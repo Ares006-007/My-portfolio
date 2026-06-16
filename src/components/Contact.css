@@ -1,0 +1,33 @@
+.contact-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  padding: var(--spacing-lg) 0;
+}
+
+.contact-wrapper .section-title::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.contact-desc {
+  margin-bottom: var(--spacing-md);
+  font-size: 1.1rem;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.contact-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.icon {
+  opacity: 0.8;
+}
