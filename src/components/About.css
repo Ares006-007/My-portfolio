@@ -1,0 +1,25 @@
+.section-title {
+  display: inline-block;
+  margin-bottom: var(--spacing-md);
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background-color: var(--accent-color);
+  border-radius: var(--radius-sm);
+}
+
+.about-content {
+  max-width: 800px;
+}
+
+.about-content p {
+  margin-bottom: var(--spacing-sm);
+  font-size: 1.1rem;
+}
