@@ -1,25 +1,43 @@
 .hero {
-  min-height: 80vh;
+  min-height: 70vh;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .hero-content {
-  max-width: 800px;
+  max-width: 650px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .hero-title {
+  margin-bottom: var(--spacing-xs);
+}
+
+.hero-position {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--heading-color);
   margin-bottom: var(--spacing-sm);
+  border-bottom: 1px solid var(--heading-color);
+  padding-bottom: 0.5rem;
+  display: inline-block;
 }
 
 .hero-subtitle {
-  font-size: 1.2rem;
-  max-width: 650px;
+  font-size: 1.15rem;
   margin-bottom: var(--spacing-md);
-  color: var(--text-secondary);
+  color: var(--text-primary);
+  text-align: center; /* keep subtitle centered as requested for short intros */
 }
 
 .hero-actions {
   display: flex;
   gap: var(--spacing-sm);
+  justify-content: center;
 }

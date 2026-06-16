@@ -4,7 +4,7 @@ import './About.css';
 const About = () => {
   return (
     <section id="about" className="section container">
-      <h2 className="section-title">About Me</h2>
+      <h2 className="section-title">About</h2>
       <div className="about-content">
         <p>
           I am an 18-year-old student engineer based in Bengaluru, India, with a deep passion for building robust technical solutions across the full stack. My work spans from architecting scalable web applications to developing hardware prototypes using Arduino and ESP32. I approach problems with a systems-thinking mindset, ensuring that every component I build is optimized, maintainable, and aligned with broader technical objectives.

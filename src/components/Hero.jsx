@@ -6,15 +6,17 @@ const Hero = () => {
     <section className="hero section container">
       <div className="hero-content">
         <h1 className="hero-title">
-          Hi, I'm Shaik Ajhaj. <br />
-          <span className="text-accent">Engineer, Builder & Leader.</span>
+          Shaik Ajhaj
         </h1>
+        <p className="hero-position">
+          Engineer, Builder & Leader
+        </p>
         <p className="hero-subtitle">
           I build robust technical systems, hardware prototypes, and communities. Currently focused on full-stack development and organizing impactful tech initiatives in Bengaluru.
         </p>
         <div className="hero-actions">
-          <a href="#projects" className="btn btn-accent">View Projects</a>
-          <a href="#contact" className="btn btn-secondary">Contact Me</a>
+          <a href="#projects" className="btn btn-primary">Selected Projects</a>
+          <a href="#contact" className="btn btn-secondary">Get In Touch</a>
         </div>
       </div>
     </section>

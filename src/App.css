@@ -1,8 +1,13 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .header {
   padding: var(--spacing-sm) 0;
-  border-bottom: 1px solid var(--border-color);
-  background-color: rgba(5, 5, 5, 0.8);
-  backdrop-filter: blur(10px);
+  background-color: var(--bg-color);
+  border-bottom: 1px solid rgba(17, 17, 16, 0.1);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -15,10 +20,11 @@
 }
 
 .logo {
+  font-family: var(--font-serif);
   font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  color: var(--text-primary);
+  font-weight: 600;
+  color: var(--heading-color);
+  letter-spacing: -0.02em;
 }
 
 .nav-links {
@@ -27,25 +33,30 @@
 }
 
 .nav-links a {
-  font-size: 0.95rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   font-weight: 500;
-  color: var(--text-secondary);
+  color: var(--text-primary);
 }
 
 .nav-links a:hover {
-  color: var(--text-primary);
+  color: var(--heading-color);
 }
 
 .footer {
   padding: var(--spacing-md) 0;
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid rgba(17, 17, 16, 0.1);
   text-align: center;
-  color: var(--text-muted);
-  font-size: 0.9rem;
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: auto;
 }
 
 @media (max-width: 768px) {
   .nav-links {
-    display: none; /* Hide on mobile for simplicity, or implement mobile menu later */
+    display: none;
   }
 }

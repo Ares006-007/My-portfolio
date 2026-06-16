@@ -37,7 +37,7 @@ const Projects = () => {
   return (
     <section id="projects" className="section container">
       <h2 className="section-title">Selected Projects</h2>
-      <div className="projects-grid">
+      <div className="projects-list">
         {projectsData.map((project, index) => (
           <ProjectCard key={index} {...project} />
         ))}
