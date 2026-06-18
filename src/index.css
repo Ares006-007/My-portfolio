@@ -1,32 +1,27 @@
 /* ============================================================
-   DESIGN SYSTEM — Cinematic Editorial Portfolio
+   DESIGN SYSTEM
    ============================================================ */
 
 :root {
-  /* Color Palette */
-  --black: #000000;
-  --near-black: #050505;
-  --surface: #0A0A0A;
-  --surface-elevated: #101010;
-  --border-subtle: rgba(255, 255, 255, 0.03);
-  --border-hover: rgba(255, 255, 255, 0.08);
+  /* Palette */
+  --bg: #0B0B0B;
+  --surface: #141414;
+  --surface-hover: #1A1A1A;
+  --border: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(255, 255, 255, 0.12);
 
-  --cream: #E1E0CC;
-  --cream-muted: #DEDBC8;
-  --cream-dim: rgba(225, 224, 204, 0.5);
-  --cream-faint: rgba(225, 224, 204, 0.25);
+  --text-primary: #E8E6E1;
+  --text-body: #8A8A82;
+  --text-muted: #5C5C56;
 
-  --accent: #C8956C;
-  --accent-muted: rgba(200, 149, 108, 0.6);
-  --accent-faint: rgba(200, 149, 108, 0.15);
-
-  --text-body: #9A9888;
+  --accent: #A0785C;
+  --accent-hover: #B8906E;
+  --accent-faint: rgba(160, 120, 92, 0.12);
 
   /* Typography */
-  --font-display: 'Outfit', sans-serif;
-  --font-serif: 'Instrument Serif', serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-heading: 'Sora', sans-serif;
+  --font-body: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Fira Code', monospace;
 
   /* Spacing */
   --space-1: 0.25rem;
@@ -42,18 +37,16 @@
   --space-20: 9rem;
 
   /* Radius */
+  --radius-sm: 0.5rem;
   --radius-md: 1rem;
   --radius-lg: 1.5rem;
-  --radius-xl: 2rem;
-  --radius-2xl: 2.5rem;
   --radius-full: 9999px;
 
-  /* Transitions */
+  /* Motion */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
   --duration-fast: 150ms;
   --duration-normal: 300ms;
-  --duration-slow: 500ms;
 }
 
 /* ============================================================
@@ -73,7 +66,7 @@ html {
 }
 
 body {
-  background-color: var(--black);
+  background-color: var(--bg);
   color: var(--text-body);
   font-family: var(--font-body);
   font-weight: 400;
@@ -84,7 +77,7 @@ body {
 
 ::selection {
   background-color: var(--accent);
-  color: var(--black);
+  color: var(--bg);
 }
 
 a {
@@ -94,7 +87,7 @@ a {
 }
 
 a:hover {
-  color: var(--cream);
+  color: var(--text-primary);
 }
 
 img {
@@ -112,63 +105,41 @@ ul, ol {
    ============================================================ */
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
-  color: var(--cream);
-  font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-}
-
-h1 {
-  font-size: clamp(3.5rem, 10vw, 8rem);
-  font-weight: 800;
-  letter-spacing: -0.05em;
-}
-
-h2 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 400;
+  font-family: var(--font-heading);
+  color: var(--text-primary);
+  font-weight: 600;
+  line-height: 1.1;
   letter-spacing: -0.02em;
 }
 
+h1 {
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  letter-spacing: -0.03em;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+}
+
 h3 {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: 500;
 }
 
 p {
   color: var(--text-body);
-  font-size: 1rem;
+  font-size: 0.9375rem;
   line-height: 1.7;
-  max-width: 60ch;
+  max-width: 58ch;
 }
 
-/* Serif italic emphasis */
-.serif-accent {
-  font-family: var(--font-serif);
-  font-style: italic;
-  color: var(--accent);
-}
-
-/* Mono technical label */
-.mono-label {
+/* Small label */
+.label {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--cream-dim);
-}
-
-/* Section bracket label */
-.section-label {
-  font-family: var(--font-mono);
-  font-size: 0.625rem;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--accent-muted);
-  display: block;
-  margin-bottom: var(--space-6);
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
 }
 
 /* ============================================================
@@ -176,36 +147,20 @@ p {
    ============================================================ */
 
 .container {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 var(--space-6);
 }
 
 /* ============================================================
-   FLOATING CARD SECTIONS
+   SECTION CARD (used sparingly, not on everything)
    ============================================================ */
 
-.floating-card {
-  background: var(--surface-elevated);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-2xl);
-  padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 4vw, 4rem);
-  position: relative;
-  overflow: hidden;
-}
-
-.floating-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 0;
-}
-
-.floating-card > * {
-  position: relative;
-  z-index: 1;
+.section-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: clamp(2rem, 5vw, 3.5rem) clamp(1.5rem, 4vw, 3.5rem);
 }
 
 /* ============================================================
@@ -225,67 +180,39 @@ p {
   background: transparent;
 }
 
-.btn-pill {
+.btn-primary {
   background: var(--accent);
-  color: var(--black);
+  color: var(--bg);
   padding: 0.75rem 1.75rem;
   border-radius: var(--radius-full);
-  font-weight: 500;
 }
 
-.btn-pill:hover {
-  background: var(--cream);
-  color: var(--black);
-  transform: translateY(-1px);
+.btn-primary:hover {
+  background: var(--accent-hover);
+  color: var(--bg);
 }
 
-.btn-outline {
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--cream);
-  border: 1px solid var(--border-hover);
+.btn-secondary {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
   padding: 0.65rem 1.5rem;
   border-radius: var(--radius-full);
 }
 
-.btn-outline:hover {
-  background: var(--accent-faint);
-  border-color: var(--accent-muted);
-  color: var(--cream);
-}
-
-.btn-ghost {
-  color: var(--cream-dim);
-  padding: 0;
-}
-
-.btn-ghost:hover {
-  color: var(--accent);
-}
-
-/* Arrow icon in button */
-.btn-arrow {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  background: var(--black);
-  border-radius: 50%;
-  transition: transform var(--duration-normal) var(--ease-out);
-}
-
-.btn-pill:hover .btn-arrow {
-  transform: scale(1.1);
+.btn-secondary:hover {
+  border-color: var(--border-hover);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 /* ============================================================
-   SCROLL ANIMATIONS
+   SCROLL REVEAL
    ============================================================ */
 
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+  transform: translateY(20px);
+  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
 }
 
 .reveal.visible {
@@ -293,16 +220,15 @@ p {
   transform: translateY(0);
 }
 
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
 
-/* Hero-specific stagger */
-@keyframes heroFadeUp {
+@keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(24px);
   }
   to {
     opacity: 1;
@@ -319,7 +245,7 @@ p {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--black);
+  background: var(--bg);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -340,8 +266,8 @@ p {
     padding: 0 var(--space-4);
   }
 
-  .floating-card {
-    border-radius: var(--radius-lg);
+  .section-card {
+    border-radius: var(--radius-md);
     padding: var(--space-6) var(--space-5);
   }
 }

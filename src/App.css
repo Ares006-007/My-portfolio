@@ -2,62 +2,62 @@
    APP SHELL — Nav + Footer
    ============================================================ */
 
-/* ---- Floating Pill Nav ---- */
+/* ---- Nav ---- */
 .nav {
   position: fixed;
   top: 1.25rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
-  animation: heroFadeUp 0.8s var(--ease-out) 0.6s both;
+  animation: fadeUp 0.7s var(--ease-out) 0.5s both;
 }
 
-.nav-pill {
+.nav-inner {
   display: flex;
   align-items: center;
   gap: clamp(1rem, 3vw, 2.5rem);
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--border-subtle);
+  background: rgba(11, 11, 11, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
   border-radius: var(--radius-full);
-  padding: 0.6rem 1.75rem;
+  padding: 0.55rem 1.5rem;
 }
 
 .nav-logo {
-  font-family: var(--font-display);
-  font-size: 0.9375rem;
-  font-weight: 700;
-  color: var(--cream);
-  letter-spacing: -0.02em;
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
   white-space: nowrap;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: clamp(0.75rem, 2.5vw, 2rem);
+  gap: clamp(0.75rem, 2.5vw, 1.75rem);
 }
 
 .nav-link {
   font-family: var(--font-body);
   font-size: 0.75rem;
   font-weight: 400;
-  color: var(--cream-dim);
-  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
   transition: color var(--duration-fast) var(--ease-in-out);
   white-space: nowrap;
 }
 
 .nav-link:hover {
-  color: var(--cream);
+  color: var(--text-primary);
 }
 
 /* ---- Footer ---- */
 .footer {
-  border-top: 1px solid var(--border-subtle);
-  padding: var(--space-10) 0;
-  background: var(--black);
+  border-top: 1px solid var(--border);
+  padding: var(--space-8) 0;
+  background: var(--bg);
 }
 
 .footer-inner {
@@ -66,26 +66,12 @@
   align-items: center;
 }
 
-.footer-left {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
-.footer-path {
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  color: var(--cream-faint);
-  letter-spacing: 0.05em;
-}
-
 .footer-copy {
-  font-family: var(--font-body);
   font-size: 0.8125rem;
-  color: var(--text-body);
+  color: var(--text-muted);
 }
 
-.footer-right {
+.footer-links {
   display: flex;
   align-items: center;
   gap: var(--space-5);
@@ -93,31 +79,12 @@
 
 .footer-link {
   font-size: 0.8125rem;
-  color: var(--cream-dim);
+  color: var(--text-muted);
   transition: color var(--duration-fast) var(--ease-in-out);
 }
 
 .footer-link:hover {
-  color: var(--accent);
-}
-
-.footer-status {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-family: var(--font-mono);
-  font-size: 0.625rem;
-  color: var(--cream-faint);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-.footer-status-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #4ade80;
-  box-shadow: 0 0 6px rgba(74, 222, 128, 0.4);
+  color: var(--text-primary);
 }
 
 @media (max-width: 768px) {
@@ -125,18 +92,13 @@
     display: none;
   }
 
-  .nav-pill {
+  .nav-inner {
     padding: 0.5rem 1.25rem;
   }
 
   .footer-inner {
     flex-direction: column;
-    gap: var(--space-5);
+    gap: var(--space-4);
     text-align: center;
-  }
-
-  .footer-right {
-    flex-direction: column;
-    gap: var(--space-3);
   }
 }
