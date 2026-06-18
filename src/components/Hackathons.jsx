@@ -1,4 +1,5 @@
 import React from 'react';
+import './Timeline.css';
 
 const hackathonsData = [
   {
@@ -17,22 +18,29 @@ const hackathonsData = [
 
 const Hackathons = () => {
   return (
-    <section id="hackathons" className="section container">
-      <h2 className="section-title">Hackathons</h2>
-      <div className="timeline">
-        {hackathonsData.map((item, index) => (
-          <div key={index} className="timeline-item">
-            <div className="timeline-dot"></div>
-            <div className="timeline-content">
-              <h3 className="timeline-role">{item.organization}</h3>
-              <div className="timeline-meta">
-                <span className="timeline-org">{item.role}</span>
-                <span className="timeline-date">{item.date}</span>
+    <section id="hackathons" className="timeline-section">
+      <div className="container">
+        <div className="floating-card reveal">
+          <span className="section-label">[ Hackathons ]</span>
+          <h2 className="timeline-title">
+            Competitions I've <span className="serif-accent">won.</span>
+          </h2>
+
+          <div className="timeline-list">
+            {hackathonsData.map((item, index) => (
+              <div key={index} className="timeline-item">
+                <div className="timeline-item-meta">
+                  <span className="timeline-date">{item.date}</span>
+                  <span className="timeline-org">{item.organization}</span>
+                </div>
+                <div className="timeline-item-content">
+                  <h3 className="timeline-role">{item.role}</h3>
+                  <p className="timeline-desc">{item.description}</p>
+                </div>
               </div>
-              <p className="timeline-desc">{item.description}</p>
-            </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
     </section>
   );

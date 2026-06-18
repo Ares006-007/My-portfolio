@@ -1,69 +1,91 @@
-.timeline {
-  position: relative;
-  max-width: 650px;
-  margin: 0 auto;
-  padding-left: 2rem;
-  text-align: left;
+/* ============================================================
+   TIMELINE SECTIONS — Experience, Hackathons, Events
+   ============================================================ */
+
+.timeline-section {
+  padding: var(--space-4) 0;
+  background: var(--black);
 }
 
-.timeline::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 7px;
-  height: 100%;
-  width: 1px;
-  background-color: rgba(17, 17, 16, 0.2);
+.timeline-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-8);
+}
+
+/* Timeline List */
+.timeline-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
 .timeline-item {
-  position: relative;
-  margin-bottom: var(--spacing-md);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  padding: var(--space-6) 0;
+  border-top: 1px solid var(--border-subtle);
+  transition: border-color var(--duration-normal) var(--ease-out);
 }
 
 .timeline-item:last-child {
-  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
-.timeline-dot {
-  position: absolute;
-  left: -2rem;
-  top: 0.35rem;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background-color: var(--bg-color);
-  border: 1px solid var(--heading-color);
-  z-index: 1;
+.timeline-item:hover {
+  border-top-color: var(--border-hover);
 }
 
-.timeline-role {
-  font-family: var(--font-serif);
-  font-size: 1.25rem;
-  color: var(--heading-color);
-  margin-bottom: 0.25rem;
+@media (min-width: 768px) {
+  .timeline-item {
+    grid-template-columns: 200px 1fr;
+    gap: var(--space-8);
+  }
 }
 
-.timeline-meta {
+/* Meta column */
+.timeline-item-meta {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: var(--spacing-xs);
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.timeline-org {
-  color: var(--heading-color);
-  font-weight: 500;
+  flex-direction: column;
+  gap: var(--space-1);
 }
 
 .timeline-date {
-  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-muted);
+}
+
+.timeline-org {
+  font-size: 0.8125rem;
+  color: var(--cream-dim);
+  font-weight: 400;
+}
+
+/* Content column */
+.timeline-item-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.timeline-role {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--cream);
+  line-height: 1.25;
 }
 
 .timeline-desc {
-  color: var(--text-primary);
-  font-size: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--text-body);
+  margin-bottom: 0;
+  max-width: 48ch;
 }

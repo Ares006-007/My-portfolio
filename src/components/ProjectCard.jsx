@@ -1,18 +1,24 @@
 import React from 'react';
 
-const ProjectCard = ({ title, summary, role, stack, impact }) => {
+const ProjectCard = ({ title, summary, role, stack, index }) => {
+  const num = String(index + 1).padStart(2, '0');
+
   return (
-    <div className="project-card">
-      <div className="project-header">
-        <h3 className="project-title">{title}</h3>
-        <span className="project-role">{role}</span>
+    <div className={`project-card floating-card reveal reveal-delay-${(index % 4) + 1}`}>
+      <div className="project-card-header">
+        <span className="project-index">{num}</span>
+        <span className="project-role-badge">{role}</span>
       </div>
-      <p className="project-summary">{summary}</p>
-      {impact && <p className="project-impact">{impact}</p>}
-      <div className="project-stack">
-        {stack.map((tech, index) => (
-          <span key={index} className="badge">{tech}</span>
-        ))}
+
+      <h3 className="project-card-title">{title}</h3>
+      <p className="project-card-summary">{summary}</p>
+
+      <div className="project-card-footer">
+        <div className="project-stack">
+          {stack.map((tech, idx) => (
+            <span key={idx} className="project-tech-tag">{tech}</span>
+          ))}
+        </div>
       </div>
     </div>
   );

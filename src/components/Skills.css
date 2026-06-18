@@ -1,35 +1,86 @@
+/* ============================================================
+   SKILLS SECTION
+   ============================================================ */
+
+.skills-section {
+  padding: var(--space-4) 0;
+  background: var(--black);
+}
+
+.skills-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-8);
+}
+
+/* Grid */
 .skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+}
+
+@media (min-width: 768px) {
+  .skills-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-6);
+  }
+}
+
+/* Category */
+.skill-category {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
-  max-width: 650px;
-  margin: 0 auto;
-  text-align: left;
+  gap: var(--space-3);
 }
 
-.skill-category {
-  padding: var(--spacing-sm) 0;
-  border-bottom: 1px solid rgba(17, 17, 16, 0.15);
+.skill-path {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  color: var(--accent-muted);
+  letter-spacing: 0.05em;
 }
 
-.skill-category:last-child {
-  border-bottom: none;
+.skill-category-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--cream);
+  letter-spacing: -0.01em;
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
-.category-title {
-  font-family: var(--font-serif);
-  font-size: 1.25rem;
-  margin-bottom: var(--spacing-xs);
-  color: var(--heading-color);
-}
-
-.skills-list {
+/* Skill List */
+.skill-list {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  flex-direction: column;
+  gap: var(--space-2);
 }
 
-.skill-badge {
-  background-color: transparent;
-  border: 1px solid var(--text-primary);
+.skill-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--text-body);
+  transition: color var(--duration-fast) var(--ease-in-out);
+}
+
+.skill-item:hover {
+  color: var(--cream);
+}
+
+.skill-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent-muted);
+  flex-shrink: 0;
+}
+
+.skill-item:hover .skill-dot {
+  background: var(--accent);
 }
