@@ -1,13 +1,13 @@
 import React from 'react';
 
-const ProjectCard = ({ title, summary, role, stack, index }) => {
+const ProjectCard = ({ title, context, summary, stack, index }) => {
   const num = String(index + 1).padStart(2, '0');
 
   return (
-    <div className={`project-card floating-card reveal reveal-delay-${(index % 4) + 1}`}>
-      <div className="project-card-header">
+    <div className={`project-card section-card reveal reveal-delay-${(index % 4) + 1}`}>
+      <div className="project-card-top">
         <span className="project-index">{num}</span>
-        <span className="project-role-badge">{role}</span>
+        {context && <span className="project-context">{context}</span>}
       </div>
 
       <h3 className="project-card-title">{title}</h3>

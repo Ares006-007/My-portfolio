@@ -4,44 +4,42 @@ import './Projects.css';
 
 const projectsData = [
   {
-    title: 'Meta OpenEnv Hackathon Project',
-    summary: 'A high-performance environment visualization tool built during the Meta OpenEnv x HuggingFace hackathon. Ranked in the top tier for technical complexity and system performance.',
-    role: 'Lead Full-Stack Developer',
+    title: 'Environment Visualization Tool',
+    context: 'Meta OpenEnv × HuggingFace Hackathon',
+    summary: 'Built a tool that renders complex environment data visually, pulling from HuggingFace models. The tricky part was getting real-time rendering smooth enough to be usable while the models were still processing.',
     stack: ['React', 'Python', 'HuggingFace', 'TailwindCSS'],
   },
   {
-    title: 'Hardware IoT Prototype',
-    summary: 'An autonomous environmental monitoring system that streams real-time telemetry data to a centralized dashboard. Achieved 99.9% uptime over a 4-week testing period.',
-    role: 'Hardware Engineer & Developer',
-    stack: ['ESP32', 'Arduino', 'C++', 'Node.js', 'WebSockets'],
+    title: 'IoT Sensor Network',
+    context: 'Hardware project',
+    summary: 'A mesh of ESP32 microcontrollers streaming environmental telemetry to a web dashboard. Wrote the firmware in C++ to handle connectivity drops gracefully — the kind of problem you only discover when your sensors are on a rooftop.',
+    stack: ['ESP32', 'C++', 'Node.js', 'WebSockets'],
   },
   {
-    title: 'Enterprise Web App Platform',
-    summary: 'A scalable, full-stack workflow management application designed for high-throughput data processing. Reduced data processing latency by 40%.',
-    role: 'Full-Stack Developer',
+    title: 'Workflow Management App',
+    context: 'Freelance project',
+    summary: 'A full-stack app for a local business to track and process their daily operations. Nothing glamorous — form submissions, status tracking, role-based access. But it replaced a spreadsheet that was falling apart.',
     stack: ['Next.js', 'TypeScript', 'PostgreSQL', 'Docker'],
   },
   {
-    title: 'Community Tech Dashboard',
-    summary: 'A centralized portal for managing event registrations, participant analytics, and real-time announcements. Handled over 500 concurrent users during peak registration.',
-    role: 'Project Lead',
-    stack: ['React', 'Firebase', 'Express', 'Figma'],
+    title: 'Hackathon Registration Portal',
+    context: 'Built for Hack Club events',
+    summary: 'A portal to handle registrations, announcements, and check-ins for hackathons I was organizing. Had to work reliably during peak sign-up windows when a few hundred people hit it at once.',
+    stack: ['React', 'Firebase', 'Express'],
   }
 ];
 
 const Projects = () => {
   return (
-    <section id="projects" className="projects-section">
+    <section id="projects" className="projects">
       <div className="container">
         <div className="projects-header reveal">
-          <div className="projects-header-left">
-            <span className="section-label">[ Selected Projects ]</span>
-            <h2 className="projects-title">
-              Things I've <span className="serif-accent">built.</span>
-            </h2>
+          <div>
+            <span className="label">Work</span>
+            <h2 className="projects-title">Things I've built</h2>
           </div>
           <p className="projects-desc">
-            A selection of projects that showcase my approach to engineering — from full-stack platforms to IoT hardware systems.
+            A mix of hackathon projects, freelance work, and things I built because I needed them.
           </p>
         </div>
 

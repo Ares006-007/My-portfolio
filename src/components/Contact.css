@@ -1,86 +1,43 @@
 /* ============================================================
-   CONTACT SECTION
+   CONTACT
    ============================================================ */
 
-.contact-section {
-  padding: var(--space-4) 0 var(--space-16);
-  background: var(--black);
+.contact {
+  padding: var(--space-10) 0 var(--space-16);
+  background: var(--bg);
 }
 
-.contact-card {
+.contact-inner {
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.contact-statement {
-  margin-bottom: var(--space-8);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-5);
+.contact-inner .label {
+  margin-bottom: var(--space-5);
 }
 
 .contact-headline {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 400;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-  max-width: 32rem;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.15;
+  max-width: 28rem;
+  margin-bottom: var(--space-5);
 }
 
 .contact-desc {
   font-size: 0.9375rem;
   color: var(--text-body);
-  max-width: 32rem;
+  max-width: 30rem;
   text-align: center;
   line-height: 1.7;
-  margin-bottom: 0;
+  margin-bottom: var(--space-8);
 }
 
-/* Actions */
 .contact-actions {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.75rem;
-  margin-bottom: var(--space-8);
-}
-
-.contact-cta {
-  font-size: 0.9375rem;
-  padding: 0.875rem 2rem;
-}
-
-/* Status */
-.contact-status {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding-top: var(--space-6);
-  border-top: 1px solid var(--border-subtle);
-}
-
-.contact-status-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #4ade80;
-  box-shadow: 0 0 8px rgba(74, 222, 128, 0.4);
-  animation: statusPulse 2s ease-in-out infinite;
-}
-
-.contact-status-text {
-  font-family: var(--font-mono);
-  font-size: 0.625rem;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--cream-faint);
-}
-
-@keyframes statusPulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
 }

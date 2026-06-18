@@ -1,20 +1,20 @@
 /* ============================================================
-   PROJECTS SECTION
+   PROJECTS
    ============================================================ */
 
-.projects-section {
-  padding: var(--space-8) 0 var(--space-16);
-  background: var(--black);
+.projects {
+  padding: var(--space-10) 0 var(--space-16);
+  background: var(--bg);
 }
 
 /* Header */
 .projects-header {
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
+  gap: var(--space-4);
   margin-bottom: var(--space-10);
   padding-bottom: var(--space-6);
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border);
 }
 
 @media (min-width: 768px) {
@@ -25,25 +25,23 @@
   }
 }
 
-.projects-header-left {
-  flex-shrink: 0;
+.projects-header .label {
+  display: block;
+  margin-bottom: var(--space-3);
 }
 
 .projects-title {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3.25rem);
-  font-weight: 400;
-  letter-spacing: -0.02em;
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  font-weight: 600;
 }
 
 .projects-desc {
-  font-size: 0.9375rem;
-  color: var(--text-body);
+  font-size: 0.875rem;
+  color: var(--text-muted);
   max-width: 24rem;
-  margin-bottom: 0;
 }
 
-/* Card Grid */
+/* Grid */
 .projects-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -56,7 +54,7 @@
   }
 }
 
-/* Project Card */
+/* Card */
 .project-card {
   display: flex;
   flex-direction: column;
@@ -68,52 +66,46 @@
   border-color: var(--border-hover);
 }
 
-.project-card-header {
+.project-card-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 .project-index {
-  font-family: var(--font-display);
-  font-size: 0.875rem;
-  font-weight: 700;
-  color: var(--accent-muted);
-  letter-spacing: 0.05em;
+  font-family: var(--font-heading);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
 }
 
-.project-role-badge {
+.project-context {
   font-family: var(--font-mono);
-  font-size: 0.5625rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--cream-dim);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--border-subtle);
-  padding: 0.25rem 0.625rem;
-  border-radius: var(--radius-full);
+  font-size: 0.625rem;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
 }
 
 .project-card-title {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: var(--cream);
-  line-height: 1.2;
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.25;
 }
 
 .project-card-summary {
   font-size: 0.875rem;
-  line-height: 1.65;
+  line-height: 1.7;
   color: var(--text-body);
-  margin-bottom: 0;
   flex-grow: 1;
 }
 
 .project-card-footer {
   margin-top: auto;
   padding-top: var(--space-4);
-  border-top: 1px solid var(--border-subtle);
+  border-top: 1px solid var(--border);
 }
 
 .project-stack {
@@ -124,11 +116,11 @@
 
 .project-tech-tag {
   font-family: var(--font-mono);
-  font-size: 0.5625rem;
-  letter-spacing: 0.05em;
-  color: var(--cream-faint);
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  font-size: 0.625rem;
+  letter-spacing: 0.03em;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
   padding: 0.2rem 0.5rem;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
 }

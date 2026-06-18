@@ -3,51 +3,54 @@ import './Skills.css';
 
 const skillCategories = [
   {
-    path: '~/skills/languages',
     title: 'Languages',
-    skills: ['JavaScript (ES6+)', 'TypeScript', 'Python', 'C++', 'HTML/CSS']
+    skills: ['JavaScript', 'TypeScript', 'Python', 'C++', 'HTML / CSS']
   },
   {
-    path: '~/skills/frontend',
-    title: 'Frontend',
-    skills: ['React', 'Next.js', 'Vite', 'TailwindCSS', 'Framer Motion']
+    title: 'Web',
+    skills: ['React', 'Next.js', 'Node.js', 'Express', 'Firebase']
   },
   {
-    path: '~/skills/backend',
-    title: 'Backend & DB',
-    skills: ['Node.js', 'Express', 'PostgreSQL', 'Firebase', 'REST APIs']
+    title: 'Infrastructure',
+    skills: ['PostgreSQL', 'Docker', 'Git', 'REST APIs', 'WebSockets']
   },
   {
-    path: '~/skills/tools',
-    title: 'Tools & Hardware',
-    skills: ['Git/GitHub', 'Docker', 'Figma', 'Arduino', 'ESP32']
+    title: 'Hardware',
+    skills: ['Arduino', 'ESP32', 'Sensor integration', 'Firmware (C++)', 'PCB basics']
   }
+];
+
+const interests = [
+  'Mechatronics', 'Robotics', 'Automation', 'Aerospace systems', 'Product design'
 ];
 
 const Skills = () => {
   return (
-    <section id="skills" className="skills-section">
+    <section id="skills" className="skills">
       <div className="container">
-        <div className="floating-card reveal">
-          <span className="section-label">[ Capabilities ]</span>
-          <h2 className="skills-title">
-            My <span className="serif-accent">toolkit.</span>
-          </h2>
+        <div className="reveal">
+          <span className="label">Toolkit</span>
+          <h2 className="skills-heading">What I work with</h2>
+        </div>
 
-          <div className="skills-grid">
-            {skillCategories.map((category, index) => (
-              <div key={index} className="skill-category">
-                <span className="skill-path">{category.path}</span>
-                <h3 className="skill-category-title">{category.title}</h3>
-                <ul className="skill-list">
-                  {category.skills.map((skill, idx) => (
-                    <li key={idx} className="skill-item">
-                      <span className="skill-dot"></span>
-                      {skill}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+        <div className="skills-grid reveal">
+          {skillCategories.map((cat, i) => (
+            <div key={i} className="skill-group">
+              <h3 className="skill-group-title">{cat.title}</h3>
+              <ul className="skill-list">
+                {cat.skills.map((skill, j) => (
+                  <li key={j} className="skill-item">{skill}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <div className="interests reveal">
+          <h3 className="interests-label">Also interested in</h3>
+          <div className="interests-list">
+            {interests.map((item, i) => (
+              <span key={i} className="interest-tag">{item}</span>
             ))}
           </div>
         </div>
