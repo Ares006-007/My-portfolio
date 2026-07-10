@@ -13,7 +13,7 @@
   --color-highlight: #C8A96B;
   --color-border: #E0DDD6;
   --color-border-dark: #C2BFB8;
-  --font-heading: 'Inter', sans-serif;
+  --font-heading: 'Playfair Display', serif;
   --font-body: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
@@ -71,29 +71,27 @@ body {
 
 .heading-xl {
   font-family: var(--font-heading);
-  font-weight: 800;
+  font-weight: 400;
   font-size: clamp(2.75rem, 6.5vw, 5.5rem);
   line-height: 0.95;
-  letter-spacing: -0.03em;
-  text-transform: uppercase;
+  letter-spacing: -0.01em;
   color: var(--color-fg);
 }
 
 .heading-lg {
   font-family: var(--font-heading);
-  font-weight: 700;
+  font-weight: 400;
   font-size: clamp(2rem, 5vw, 3.5rem);
   line-height: 1.05;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   color: var(--color-fg);
 }
 
 .heading-md {
   font-family: var(--font-heading);
-  font-weight: 700;
+  font-weight: 500;
   font-size: clamp(1.25rem, 2.5vw, 1.75rem);
   line-height: 1.2;
-  letter-spacing: -0.01em;
   color: var(--color-fg);
 }
 
