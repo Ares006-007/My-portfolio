@@ -51,11 +51,11 @@ export default function Skills() {
       <div className="section-container">
         {/* Section label */}
         <RevealOnScroll>
-          <p className="label mb-6">04 — Skills</p>
+          <p className="label mb-10">04 — Skills</p>
         </RevealOnScroll>
 
         <RevealOnScroll>
-          <h2 className="heading-lg mb-20">
+          <h2 className="heading-lg mb-24">
             Technologies & Tools
           </h2>
         </RevealOnScroll>
@@ -81,7 +81,7 @@ export default function Skills() {
 
       {/* Categorized grid below */}
       <div className="section-container mt-20">
-        <div className="grid md:grid-cols-3 gap-16">
+        <div className="grid md:grid-cols-3 gap-20">
           {skillGroups.map((group, gi) => (
             <RevealOnScroll key={group.title} delay={gi * 0.1}>
               <div>

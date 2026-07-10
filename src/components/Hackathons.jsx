@@ -30,11 +30,11 @@ export default function Hackathons() {
       <div className="section-container">
         {/* Section label */}
         <RevealOnScroll>
-          <p className="label mb-6">03 — Events</p>
+          <p className="label mb-10">03 — Events</p>
         </RevealOnScroll>
 
         <RevealOnScroll>
-          <h2 className="heading-lg mb-16">
+          <h2 className="heading-lg mb-20">
             Hackathons & Events
           </h2>
         </RevealOnScroll>
@@ -43,7 +43,7 @@ export default function Hackathons() {
         <div>
           {events.map((event, i) => (
             <RevealOnScroll key={event.name} delay={i * 0.1}>
-              <article className="border-t border-border-dark py-10 md:py-14">
+              <article className="border-t border-border-dark py-12 md:py-16">
                 <div className="grid md:grid-cols-12 gap-6 md:gap-8 items-start">
                   {/* Date + Role */}
                   <div className="md:col-span-3 flex flex-col gap-1">
