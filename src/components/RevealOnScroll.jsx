@@ -13,7 +13,7 @@ export default function RevealOnScroll({
   children,
   direction = 'up',
   delay = 0,
-  duration = 0.8,
+  duration = 1.0,
   once = true,
   className = '',
   amount = 0.2,
@@ -21,10 +21,10 @@ export default function RevealOnScroll({
   const shouldReduceMotion = useReducedMotion();
 
   const directionMap = {
-    up: { y: 35, x: 0 },
-    down: { y: -35, x: 0 },
-    left: { x: 40, y: 0 },
-    right: { x: -40, y: 0 },
+    up: { y: 20, x: 0 },
+    down: { y: -20, x: 0 },
+    left: { x: 20, y: 0 },
+    right: { x: -20, y: 0 },
   };
 
   const offset = directionMap[direction] || directionMap.up;
