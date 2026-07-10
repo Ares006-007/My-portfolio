@@ -39,7 +39,7 @@ body {
   font-family: var(--font-body);
   background-color: var(--color-bg);
   color: var(--color-fg);
-  line-height: 1.6;
+  line-height: 1.7;
   overflow-x: hidden;
   min-height: 100vh;
   cursor: none;
@@ -63,7 +63,7 @@ body {
 .label {
   font-size: 0.75rem;
   font-weight: 500;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-fg-subtle);
 }
@@ -71,7 +71,7 @@ body {
 .heading-xl {
   font-family: var(--font-heading);
   font-weight: 800;
-  font-size: clamp(3rem, 8vw, 7rem);
+  font-size: clamp(2.75rem, 6.5vw, 5.5rem);
   line-height: 0.95;
   letter-spacing: -0.03em;
   text-transform: uppercase;
@@ -98,8 +98,12 @@ body {
 
 .body-lg {
   font-size: 1.2rem;
-  line-height: 1.7;
+  line-height: 1.8;
   color: var(--color-fg-muted);
+}
+
+.body-readable {
+  max-width: 38ch;
 }
 
 .mono {
@@ -119,8 +123,8 @@ body {
 }
 
 .section-spacing {
-  padding-top: clamp(6rem, 12vw, 14rem);
-  padding-bottom: clamp(6rem, 12vw, 14rem);
+  padding-top: clamp(8rem, 15vw, 18rem);
+  padding-bottom: clamp(8rem, 15vw, 18rem);
 }
 
 .divider {
