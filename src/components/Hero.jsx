@@ -33,16 +33,19 @@ export default function Hero() {
       <div className="absolute inset-0 z-10 bg-gradient-to-r from-black/80 via-black/40 to-transparent pointer-events-none" />
 
       {/* Foreground Content */}
-      <div className="section-container py-32 md:py-0 relative z-20 pointer-events-none">
-        {/* Label */}
-        <motion.p
-          className="label mb-16 text-bg/90"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-        >
-          Portfolio — 2026
-        </motion.p>
+      <div className="section-container min-h-screen flex flex-col justify-between pt-32 md:pt-40 pb-16 relative z-20 pointer-events-none">
+        
+        {/* Main Content Block */}
+        <div className="flex-1 flex flex-col justify-center">
+          {/* Label */}
+          <motion.p
+            className="label mb-12 text-bg/90"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+          >
+            Portfolio — 2026
+          </motion.p>
 
         {/* Main heading — elegant layout */}
         <div className="max-w-4xl">
@@ -75,15 +78,17 @@ export default function Hero() {
           </p>
         </motion.div>
 
-        {/* Bottom row — scroll indicator only, minimal */}
+        </div>
+
+        {/* Bottom row — scroll indicator naturally pushed to bottom */}
         <motion.div
-          className="absolute bottom-16 left-0 right-0 section-container flex items-center justify-between"
+          className="flex items-center justify-between mt-12"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 1.6 }}
         >
           <div className="flex items-center gap-4 text-bg/80">
-            <span className="label">Scroll</span>
+            <span className="label text-bg/80">Scroll</span>
             <motion.span
               className="text-sm"
               animate={{ y: [0, 8, 0] }}
