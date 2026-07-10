@@ -63,7 +63,7 @@ export default function CustomCursor() {
   if (isTouch) return null;
 
   const isExpanded = cursorState === 'expanded';
-  const size = isExpanded ? 56 : 12;
+  const size = isExpanded ? 56 : 0;
 
   return (
     <>
