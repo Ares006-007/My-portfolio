@@ -27,7 +27,7 @@ export default function Hero() {
       </div>
 
       {/* Overlay to ensure text readability */}
-      <div className="absolute inset-0 z-10 bg-bg/70 backdrop-blur-[2px] pointer-events-none" />
+      <div className="absolute inset-0 z-10 bg-gradient-to-b from-bg/40 via-bg/70 to-bg pointer-events-none" />
 
       {/* Foreground Content */}
       <div className="section-container py-32 md:py-0 relative z-20 pointer-events-none">
