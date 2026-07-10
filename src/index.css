@@ -4,14 +4,15 @@
    DESIGN SYSTEM — Light, Minimalist, Premium
    ═══════════════════════════════════════════ */
 @theme {
-  --color-bg: #FAFAF8;
-  --color-bg-alt: #F0EFEB;
-  --color-fg: #1A1A1A;
-  --color-fg-muted: #6B6B6B;
-  --color-fg-subtle: #A0A0A0;
-  --color-accent: #C45D3E;
-  --color-border: #E5E3DF;
-  --color-border-dark: #D1CFC9;
+  --color-bg: #F7F4EE;
+  --color-bg-alt: #EFECE6;
+  --color-fg: #111111;
+  --color-fg-muted: #555555;
+  --color-fg-subtle: #888888;
+  --color-accent: #1F3B2D;
+  --color-highlight: #C8A96B;
+  --color-border: #E0DDD6;
+  --color-border-dark: #C2BFB8;
   --font-heading: 'Inter', sans-serif;
   --font-body: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
