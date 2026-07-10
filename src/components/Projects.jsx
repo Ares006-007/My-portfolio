@@ -68,11 +68,11 @@ export default function Projects() {
       <div className="section-container">
         {/* Section label */}
         <RevealOnScroll>
-          <p className="label mb-6">02 — Projects</p>
+          <p className="label mb-10">02 — Projects</p>
         </RevealOnScroll>
 
         <RevealOnScroll>
-          <h2 className="heading-lg mb-16">
+          <h2 className="heading-lg mb-20">
             Selected Work
           </h2>
         </RevealOnScroll>
@@ -117,13 +117,13 @@ export default function Projects() {
               {filteredProjects.map((project, i) => (
                 <motion.article
                   key={project.title}
-                  className="border-t border-border py-10 md:py-14 group"
+                  className="border-t border-border py-12 md:py-16 group"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.08, duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
                   data-cursor="link"
                 >
-                  <div className="grid md:grid-cols-12 gap-6 md:gap-8 items-start">
+                  <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start">
                     {/* Number */}
                     <div className="md:col-span-1">
                       <span className="mono">{project.number}</span>
