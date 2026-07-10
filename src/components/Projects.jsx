@@ -72,8 +72,8 @@ export default function Projects() {
         </RevealOnScroll>
 
         <RevealOnScroll>
-          <h2 className="heading-lg mb-20">
-            Selected Work
+          <h2 className="heading-lg italic mb-20 text-fg-muted">
+            Selected Work.
           </h2>
         </RevealOnScroll>
 
@@ -131,10 +131,10 @@ export default function Projects() {
 
                     {/* Title + Category */}
                     <div className="md:col-span-4">
-                      <h3 className="heading-md group-hover:text-accent transition-colors duration-300">
+                      <h3 className="heading-md group-hover:text-accent transition-colors duration-300" style={{ fontFamily: 'var(--font-heading)' }}>
                         {project.title}
                       </h3>
-                      <span className="label mt-2 block text-fg-subtle">
+                      <span className="label mt-4 block text-fg-subtle">
                         {project.category}
                       </span>
                     </div>
