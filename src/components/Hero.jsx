@@ -1,13 +1,36 @@
 import { motion } from 'framer-motion';
 import AnimatedText from './AnimatedText';
+import Ballpit from './Ballpit';
 
 export default function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex flex-col justify-center relative"
+      className="min-h-screen flex flex-col justify-center relative overflow-hidden"
     >
-      <div className="section-container py-32 md:py-0">
+      {/* Background WebGL Layer */}
+      <div className="absolute inset-0 z-0">
+        <Ballpit
+          count={150}
+          gravity={0.3}
+          friction={0.995}
+          wallBounce={0.9}
+          maxVelocity={0.1}
+          colors={[0x111111, 0x1f3b2d, 0xc8a96b, 0xf7f4ee]}
+          ambientColor={0xf7f4ee}
+          ambientIntensity={0.8}
+          lightIntensity={100}
+          minSize={0.4}
+          maxSize={1.2}
+          followCursor={true}
+        />
+      </div>
+
+      {/* Overlay to ensure text readability */}
+      <div className="absolute inset-0 z-10 bg-bg/70 backdrop-blur-[2px] pointer-events-none" />
+
+      {/* Foreground Content */}
+      <div className="section-container py-32 md:py-0 relative z-20 pointer-events-none">
         {/* Label */}
         <motion.p
           className="label mb-16 text-highlight"
@@ -43,7 +66,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.1, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          <p className="body-lg max-w-lg leading-relaxed">
+          <p className="body-lg max-w-lg leading-relaxed text-fg">
             A tech entrepreneur and engineering student building at the intersection of
             space technology, hardware, and artificial intelligence.
           </p>
