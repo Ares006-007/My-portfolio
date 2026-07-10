@@ -13,18 +13,18 @@ export default function Hero() {
       <div className="absolute inset-0 z-0">
         <ErrorBoundary fallback={<div className="w-full h-full bg-gradient-to-br from-fg via-[#1a1a1a] to-fg" />}>
           <Ballpit
-            count={150}
-            gravity={0.3}
-            friction={0.995}
-            wallBounce={0.9}
-            maxVelocity={0.1}
-            colors={[0x111111, 0x1f3b2d, 0xc8a96b, 0xf7f4ee]}
-            ambientColor={0x000000}
-            ambientIntensity={1.2}
-            lightIntensity={100}
-            minSize={0.4}
-            maxSize={1.2}
-            followCursor={true}
+            count={100}
+            gravity={0.1}
+            friction={0.99}
+            wallBounce={0.8}
+            maxVelocity={0.05}
+            colors={[0x111111, 0x1a1a1a, 0x222222, 0x0a0a0a]}
+            ambientColor={0x111111}
+            ambientIntensity={0.5}
+            lightIntensity={50}
+            minSize={0.3}
+            maxSize={1.0}
+            followCursor={false}
           />
         </ErrorBoundary>
       </div>
