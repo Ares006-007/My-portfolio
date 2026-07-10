@@ -20,7 +20,7 @@ export default function About() {
           {/* Bio — takes 7 cols */}
           <div className="md:col-span-7">
             <RevealOnScroll>
-              <h2 className="heading-lg mb-12">About Me</h2>
+              <h2 className="heading-lg italic mb-12 text-fg-muted">About Me.</h2>
             </RevealOnScroll>
             <AnimatedText
               text="I'm a tech entrepreneur and university student exploring the frontiers where space engineering, hardware design, and artificial intelligence converge."
@@ -45,12 +45,12 @@ export default function About() {
 
           {/* Stats — takes 4 cols, offset by 1 */}
           <div className="md:col-span-4 md:col-start-9 flex flex-col justify-center">
-            <div className="space-y-6">
+            <div className="space-y-12">
               {stats.map((stat, i) => (
                 <RevealOnScroll key={stat.label} delay={i * 0.1} direction="right">
-                  <div className="bg-bg-alt rounded-xl p-6 border border-border">
+                  <div className="border-t border-border pt-4">
                     <p
-                      className="text-4xl font-bold tracking-tight text-fg"
+                      className="text-4xl text-fg"
                       style={{ fontFamily: 'var(--font-heading)' }}
                     >
                       {stat.number}
