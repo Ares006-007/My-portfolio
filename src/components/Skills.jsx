@@ -34,15 +34,15 @@ export default function Skills() {
         <div className="grid md:grid-cols-3 gap-20">
           {skillGroups.map((group, gi) => (
             <RevealOnScroll key={group.title} delay={gi * 0.1}>
-              <div>
-                <p className="label mb-8 text-fg">{group.title}</p>
-                <div className="space-y-6">
+              <div className="bg-bg-alt/30 border border-border rounded-2xl p-8 hover:bg-bg-alt/60 transition-colors duration-500 h-full">
+                <p className="label mb-8 text-accent">{group.title}</p>
+                <div className="space-y-4">
                   {group.skills.map((skill) => (
                     <div
                       key={skill}
                       className="flex items-center justify-between group"
                     >
-                      <span className="text-fg-muted font-light group-hover:text-accent transition-colors duration-300">
+                      <span className="text-fg-muted font-light group-hover:text-fg transition-colors duration-300">
                         {skill}
                       </span>
                     </div>

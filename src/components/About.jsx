@@ -45,17 +45,19 @@ export default function About() {
 
           {/* Stats — takes 4 cols, offset by 1 */}
           <div className="md:col-span-4 md:col-start-9 flex flex-col justify-center">
-            <div className="space-y-12">
+            <div className="bg-bg-alt/50 border border-border p-8 rounded-2xl space-y-10 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-highlight/5 to-transparent pointer-events-none" />
+              
               {stats.map((stat, i) => (
                 <RevealOnScroll key={stat.label} delay={i * 0.1} direction="right">
-                  <div className="border-t border-border pt-4">
+                  <div className="relative z-10 border-t border-border/50 pt-4 first:border-0 first:pt-0">
                     <p
                       className="text-4xl text-fg"
                       style={{ fontFamily: 'var(--font-heading)' }}
                     >
                       {stat.number}
                     </p>
-                    <p className="label mt-3">{stat.label}</p>
+                    <p className="label mt-2 text-accent">{stat.label}</p>
                   </div>
                 </RevealOnScroll>
               ))}
