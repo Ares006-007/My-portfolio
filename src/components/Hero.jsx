@@ -11,7 +11,7 @@ export default function Hero() {
     >
       {/* Background WebGL Layer */}
       <div className="absolute inset-0 z-0">
-        <ErrorBoundary fallback={<div className="w-full h-full bg-gradient-to-br from-bg via-bg-alt to-bg" />}>
+        <ErrorBoundary fallback={<div className="w-full h-full bg-gradient-to-br from-fg via-[#1a1a1a] to-fg" />}>
           <Ballpit
             count={150}
             gravity={0.3}
@@ -19,8 +19,8 @@ export default function Hero() {
             wallBounce={0.9}
             maxVelocity={0.1}
             colors={[0x111111, 0x1f3b2d, 0xc8a96b, 0xf7f4ee]}
-            ambientColor={0xf7f4ee}
-            ambientIntensity={0.8}
+            ambientColor={0x000000}
+            ambientIntensity={1.2}
             lightIntensity={100}
             minSize={0.4}
             maxSize={1.2}
@@ -29,8 +29,8 @@ export default function Hero() {
         </ErrorBoundary>
       </div>
 
-      {/* Overlay to ensure text readability */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-b from-bg/40 via-bg/70 to-bg pointer-events-none" />
+      {/* Overlay to ensure text readability & transition to light theme below */}
+      <div className="absolute inset-0 z-10 bg-gradient-to-b from-fg/60 via-fg/80 to-bg pointer-events-none" />
 
       {/* Foreground Content */}
       <div className="section-container py-32 md:py-0 relative z-20 pointer-events-none">
@@ -48,14 +48,14 @@ export default function Hero() {
         <div className="max-w-4xl">
           <AnimatedText
             text="Shaik Mohammad"
-            className="heading-xl"
+            className="heading-xl text-bg"
             trigger="load"
             delay={0.4}
             staggerDelay={0.06}
           />
           <AnimatedText
             text="Ajhaj."
-            className="heading-xl italic mt-2 text-fg-muted"
+            className="heading-xl italic mt-2 text-bg/70"
             trigger="load"
             delay={0.7}
             staggerDelay={0.06}
@@ -69,7 +69,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.1, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          <p className="body-lg max-w-lg leading-relaxed text-fg">
+          <p className="body-lg max-w-lg leading-relaxed text-bg/90 font-light">
             A tech entrepreneur and engineering student building at the intersection of
             space technology, hardware, and artificial intelligence.
           </p>
@@ -82,7 +82,7 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 1.6 }}
         >
-          <div className="flex items-center gap-4 text-fg-subtle">
+          <div className="flex items-center gap-4 text-bg/50">
             <span className="label">Scroll</span>
             <motion.span
               className="text-sm"
