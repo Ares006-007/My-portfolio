@@ -33,8 +33,8 @@ export default function Contact() {
         </RevealOnScroll>
 
         <AnimatedText
-          text="Let's Work Together"
-          className="heading-lg mb-20"
+          text="Let's Work Together."
+          className="heading-lg italic mb-20 text-fg-muted"
         />
 
         <div className="grid md:grid-cols-2 gap-20 max-w-4xl">
@@ -95,7 +95,7 @@ export default function Contact() {
               <MagneticButton strength={0.15}>
                 <button
                   type="submit"
-                  className="label py-4 px-10 border border-fg text-fg hover:bg-fg hover:text-bg transition-colors duration-300 cursor-pointer"
+                  className="label py-4 px-10 border border-border text-fg hover:bg-fg hover:text-bg hover:border-fg transition-all duration-300 cursor-pointer"
                   data-cursor="action"
                 >
                   {submitted ? 'Sent ✓' : 'Send Message'}
