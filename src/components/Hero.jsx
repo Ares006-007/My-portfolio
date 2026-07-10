@@ -10,7 +10,7 @@ export default function Hero() {
       <div className="section-container py-32 md:py-0">
         {/* Label */}
         <motion.p
-          className="label mb-8"
+          className="label mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
@@ -28,7 +28,7 @@ export default function Hero() {
         />
         <AnimatedText
           text="Ajhaj"
-          className="heading-xl text-accent mt-1"
+          className="heading-xl text-accent mt-3"
           trigger="load"
           delay={0.7}
           staggerDelay={0.06}
@@ -36,21 +36,21 @@ export default function Hero() {
 
         {/* Subtitle */}
         <motion.div
-          className="mt-10 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-0"
+          className="mt-14 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-0"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.1, ease: [0.25, 0.1, 0.25, 1] }}
         >
           <span className="label">Tech Entrepreneur</span>
-          <span className="hidden sm:inline text-fg-subtle mx-4">/</span>
+          <span className="hidden sm:inline text-fg-subtle mx-6">/</span>
           <span className="label">Space Engineer</span>
-          <span className="hidden sm:inline text-fg-subtle mx-4">/</span>
+          <span className="hidden sm:inline text-fg-subtle mx-6">/</span>
           <span className="label">AI Developer</span>
         </motion.div>
 
         {/* Divider */}
         <motion.hr
-          className="divider mt-12"
+          className="divider mt-16"
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 1, delay: 1.4, ease: [0.25, 0.1, 0.25, 1] }}
@@ -59,7 +59,7 @@ export default function Hero() {
 
         {/* Bottom row — description + scroll */}
         <motion.div
-          className="mt-10 flex flex-col md:flex-row md:items-end md:justify-between gap-6"
+          className="mt-14 flex flex-col md:flex-row md:items-end md:justify-between gap-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 1.6 }}
