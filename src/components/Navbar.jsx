@@ -31,7 +31,7 @@ export default function Navbar() {
         <MagneticButton strength={0.2}>
           <a
             href="#home"
-            className="text-sm font-bold tracking-[0.2em] uppercase text-fg"
+            className={`text-sm font-bold tracking-[0.2em] uppercase transition-colors duration-500 ${scrolled ? 'text-fg' : 'text-bg'}`}
             data-cursor="link"
           >
             SMA
@@ -45,21 +45,20 @@ export default function Navbar() {
               <MagneticButton strength={0.25}>
                 <a
                   href={link.href}
-                  className="label text-fg-muted hover:text-fg transition-colors duration-300 relative group"
+                  className={`label transition-colors duration-300 relative group ${scrolled ? 'text-fg-muted hover:text-fg' : 'text-bg/70 hover:text-bg'}`}
                   data-cursor="link"
                 >
                   {link.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-fg group-hover:w-full transition-all duration-300" />
+                  <span className={`absolute -bottom-1 left-0 w-0 h-px group-hover:w-full transition-all duration-300 ${scrolled ? 'bg-fg' : 'bg-bg'}`} />
                 </a>
               </MagneticButton>
             </li>
           ))}
         </ul>
 
-        {/* Mobile toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden label text-fg-muted hover:text-fg transition-colors"
+          className={`md:hidden label transition-colors ${scrolled ? 'text-fg-muted hover:text-fg' : 'text-bg/70 hover:text-bg'}`}
           data-cursor="action"
           aria-label="Toggle menu"
         >
