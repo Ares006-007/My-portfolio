@@ -13,18 +13,21 @@ export default function About() {
       <div className="section-container">
         {/* Section label */}
         <RevealOnScroll>
-          <p className="label mb-6">01 — About</p>
+          <p className="label mb-10">01 — About</p>
         </RevealOnScroll>
 
-        <div className="grid md:grid-cols-5 gap-12 md:gap-20">
-          {/* Bio — takes 3 cols */}
-          <div className="md:col-span-3">
+        <div className="grid md:grid-cols-12 gap-16 md:gap-8">
+          {/* Bio — takes 7 cols */}
+          <div className="md:col-span-7">
+            <RevealOnScroll>
+              <h2 className="heading-lg mb-12">About Me</h2>
+            </RevealOnScroll>
             <AnimatedText
               text="I'm a tech entrepreneur and university student exploring the frontiers where space engineering, hardware design, and artificial intelligence converge."
-              className="body-lg mb-8"
+              className="body-lg mb-10 max-w-[52ch]"
             />
             <RevealOnScroll delay={0.15}>
-              <p className="text-fg-muted leading-relaxed mb-6">
+              <p className="text-fg-muted leading-relaxed mb-8 max-w-[52ch]">
                 From organizing hackathons that bring together hundreds of young
                 builders to designing embedded systems and training neural networks,
                 I believe in learning by building. Every project is an opportunity
@@ -32,7 +35,7 @@ export default function About() {
               </p>
             </RevealOnScroll>
             <RevealOnScroll delay={0.25}>
-              <p className="text-fg-muted leading-relaxed">
+              <p className="text-fg-muted leading-relaxed max-w-[52ch]">
                 When I'm not coding or soldering, you'll find me reading about
                 orbital mechanics, contributing to open-source, or mentoring
                 fellow students in their tech journeys.
@@ -40,19 +43,19 @@ export default function About() {
             </RevealOnScroll>
           </div>
 
-          {/* Stats — takes 2 cols */}
-          <div className="md:col-span-2 flex flex-col justify-center">
-            <div className="space-y-10">
+          {/* Stats — takes 4 cols, offset by 1 */}
+          <div className="md:col-span-4 md:col-start-9 flex flex-col justify-center">
+            <div className="space-y-6">
               {stats.map((stat, i) => (
                 <RevealOnScroll key={stat.label} delay={i * 0.1} direction="right">
-                  <div className="border-t border-border pt-5">
+                  <div className="bg-bg-alt rounded-xl p-6 border border-border">
                     <p
-                      className="text-5xl font-bold tracking-tight text-fg"
+                      className="text-4xl font-bold tracking-tight text-fg"
                       style={{ fontFamily: 'var(--font-heading)' }}
                     >
                       {stat.number}
                     </p>
-                    <p className="label mt-2">{stat.label}</p>
+                    <p className="label mt-3">{stat.label}</p>
                   </div>
                 </RevealOnScroll>
               ))}
