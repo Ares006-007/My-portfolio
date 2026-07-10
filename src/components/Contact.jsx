@@ -29,15 +29,15 @@ export default function Contact() {
       <div className="section-container">
         {/* Section label */}
         <RevealOnScroll>
-          <p className="label mb-6">05 — Contact</p>
+          <p className="label mb-10">05 — Contact</p>
         </RevealOnScroll>
 
         <AnimatedText
           text="Let's Work Together"
-          className="heading-lg mb-16"
+          className="heading-lg mb-20"
         />
 
-        <div className="grid md:grid-cols-2 gap-20 max-w-5xl">
+        <div className="grid md:grid-cols-2 gap-20 max-w-4xl">
           {/* Form */}
           <RevealOnScroll>
             <form onSubmit={handleSubmit} className="space-y-10">

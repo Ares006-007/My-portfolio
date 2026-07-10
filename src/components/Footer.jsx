@@ -11,7 +11,7 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-border">
-      <div className="section-container py-10">
+      <div className="section-container py-14">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           {/* Copyright */}
           <p className="label text-fg-subtle">
