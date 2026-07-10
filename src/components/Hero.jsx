@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import AnimatedText from './AnimatedText';
 import Ballpit from './Ballpit';
+import ErrorBoundary from './ErrorBoundary';
 
 export default function Hero() {
   return (
@@ -10,20 +11,22 @@ export default function Hero() {
     >
       {/* Background WebGL Layer */}
       <div className="absolute inset-0 z-0">
-        <Ballpit
-          count={150}
-          gravity={0.3}
-          friction={0.995}
-          wallBounce={0.9}
-          maxVelocity={0.1}
-          colors={[0x111111, 0x1f3b2d, 0xc8a96b, 0xf7f4ee]}
-          ambientColor={0xf7f4ee}
-          ambientIntensity={0.8}
-          lightIntensity={100}
-          minSize={0.4}
-          maxSize={1.2}
-          followCursor={true}
-        />
+        <ErrorBoundary fallback={<div className="w-full h-full bg-gradient-to-br from-bg via-bg-alt to-bg" />}>
+          <Ballpit
+            count={150}
+            gravity={0.3}
+            friction={0.995}
+            wallBounce={0.9}
+            maxVelocity={0.1}
+            colors={[0x111111, 0x1f3b2d, 0xc8a96b, 0xf7f4ee]}
+            ambientColor={0xf7f4ee}
+            ambientIntensity={0.8}
+            lightIntensity={100}
+            minSize={0.4}
+            maxSize={1.2}
+            followCursor={true}
+          />
+        </ErrorBoundary>
       </div>
 
       {/* Overlay to ensure text readability */}
