@@ -41,37 +41,37 @@ export default function Hackathons() {
 
         {/* Event list */}
         <div>
-          {events.map((event, i) => (
-            <RevealOnScroll key={event.name} delay={i * 0.1}>
-              <article className="border-t border-border-dark py-12 md:py-16">
-                <div className="grid md:grid-cols-12 gap-6 md:gap-8 items-start">
-                  {/* Date + Role */}
-                  <div className="md:col-span-3 flex flex-col gap-1">
-                    <span className="mono">{event.date}</span>
-                    <span
-                      className={`label text-[0.65rem] ${
-                        event.role === 'Organized' ? 'text-accent' : 'text-fg-subtle'
-                      }`}
-                    >
-                      {event.role}
-                    </span>
-                  </div>
+            {events.map((event, i) => (
+              <RevealOnScroll key={event.name} delay={i * 0.1}>
+                <div className="group relative p-8 md:p-10 rounded-2xl bg-bg-alt/40 border border-border hover:bg-bg-alt/80 transition-all duration-500 overflow-hidden">
+                  {/* Subtle hover gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-highlight/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                  
+                  <div className="grid md:grid-cols-12 gap-8 items-start relative z-10">
+                    <div className="md:col-span-3">
+                      <span className="mono text-fg-subtle">{event.date}</span>
+                    </div>
 
-                  {/* Name */}
-                  <div className="md:col-span-4">
-                    <h3 className="heading-md" style={{ fontFamily: 'var(--font-heading)' }}>{event.name}</h3>
-                  </div>
-
-                  {/* Description */}
-                  <div className="md:col-span-5">
-                    <p className="text-fg-muted leading-relaxed text-sm">
-                      {event.description}
-                    </p>
+                    <div className="md:col-span-9 flex flex-col gap-4">
+                      <h3 className="heading-md group-hover:text-highlight transition-colors duration-300" style={{ fontFamily: 'var(--font-heading)' }}>
+                        {event.name}
+                      </h3>
+                      
+                      <div className="flex flex-wrap items-center gap-4 text-sm mt-2">
+                        <span className="label text-accent">{event.role}</span>
+                        {event.awards && (
+                          <span className="text-highlight font-medium">✦ {event.awards}</span>
+                        )}
+                      </div>
+                      
+                      <p className="text-fg-muted mt-2 max-w-2xl text-sm leading-relaxed">
+                        {event.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </article>
-            </RevealOnScroll>
-          ))}
+              </RevealOnScroll>
+            ))}
           <hr className="divider" style={{ background: 'var(--color-border-dark)' }} />
         </div>
       </div>
