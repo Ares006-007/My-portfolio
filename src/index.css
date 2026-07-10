@@ -116,19 +116,20 @@ body {
    LAYOUT UTILITIES
    ═══════════════════════════════════════════ */
 .section-container {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 clamp(1.5rem, 4vw, 6rem);
 }
 
 .section-spacing {
-  padding-top: clamp(8rem, 15vw, 18rem);
-  padding-bottom: clamp(8rem, 15vw, 18rem);
+  padding-top: clamp(10rem, 20vw, 24rem);
+  padding-bottom: clamp(10rem, 20vw, 24rem);
 }
 
 .divider {
   height: 1px;
   background: var(--color-border);
+  opacity: 0.6;
   border: none;
   width: 100%;
 }
