@@ -117,45 +117,45 @@ export default function Projects() {
               {filteredProjects.map((project, i) => (
                 <motion.article
                   key={project.title}
-                  className="border-t border-border py-12 md:py-16 group"
+                  className="mb-8 p-8 md:p-12 rounded-2xl bg-bg-alt/40 border border-border hover:bg-bg-alt/80 transition-all duration-500 group relative overflow-hidden"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.08, duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
                   data-cursor="link"
                 >
-                  <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start">
-                    {/* Number */}
-                    <div className="md:col-span-1">
-                      <span className="mono">{project.number}</span>
-                    </div>
+                  {/* Subtle hover gradient inside card */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-highlight/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-                    {/* Title + Category */}
-                    <div className="md:col-span-4">
-                      <h3 className="heading-md group-hover:text-accent transition-colors duration-300" style={{ fontFamily: 'var(--font-heading)' }}>
-                        {project.title}
-                      </h3>
-                      <span className="label mt-4 block text-fg-subtle">
+                  <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start relative z-10">
+                    {/* Number & Category */}
+                    <div className="md:col-span-3 flex flex-col gap-2">
+                      <span className="mono text-fg-subtle">{project.number}</span>
+                      <span className="label text-accent">
                         {project.category}
                       </span>
                     </div>
 
-                    {/* Description */}
-                    <div className="md:col-span-5">
-                      <p className="text-fg-muted leading-relaxed text-sm">
+                    {/* Title + Description */}
+                    <div className="md:col-span-9 flex flex-col gap-4">
+                      <h3 className="heading-md group-hover:text-highlight transition-colors duration-300" style={{ fontFamily: 'var(--font-heading)' }}>
+                        {project.title}
+                      </h3>
+                      
+                      <p className="text-fg-muted leading-relaxed text-sm max-w-2xl">
                         {project.description}
                       </p>
-                    </div>
 
-                    {/* Tags */}
-                    <div className="md:col-span-2 flex flex-wrap gap-2 md:justify-end">
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="mono text-[0.7rem] text-fg-subtle"
-                        >
-                          {tag}
-                        </span>
-                      ))}
+                      {/* Tags */}
+                      <div className="flex flex-wrap gap-2 mt-6">
+                        {project.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="px-3 py-1 rounded-full border border-border text-[0.7rem] text-fg-subtle mono bg-bg/50"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </motion.article>
