@@ -34,8 +34,8 @@ export default function Hackathons() {
         </RevealOnScroll>
 
         <RevealOnScroll>
-          <h2 className="heading-lg mb-20">
-            Hackathons & Events
+          <h2 className="heading-lg italic mb-20 text-fg-muted">
+            Hackathons & Events.
           </h2>
         </RevealOnScroll>
 
@@ -59,7 +59,7 @@ export default function Hackathons() {
 
                   {/* Name */}
                   <div className="md:col-span-4">
-                    <h3 className="heading-md">{event.name}</h3>
+                    <h3 className="heading-md" style={{ fontFamily: 'var(--font-heading)' }}>{event.name}</h3>
                   </div>
 
                   {/* Description */}
