@@ -1,101 +1,78 @@
-import { HiOutlineCalendar, HiOutlineLocationMarker } from 'react-icons/hi';
+import RevealOnScroll from './RevealOnScroll';
 
 const events = [
   {
     name: 'Code Day 2026',
     role: 'Organized',
-    date: 'March 2026',
+    date: 'Mar 2026',
     description:
-      'Led the organization of a city-wide coding marathon bringing together 200+ student developers for a 24-hour hackathon. Managed sponsorships, mentors, and logistics.',
-    tags: ['Organizer', 'Leadership', '200+ Participants'],
+      'Led the organization of a city-wide coding marathon with 200+ student developers. Managed sponsorships, mentors, and logistics for a 24-hour hackathon.',
   },
   {
     name: 'Meta OpenEnv Hackathon',
     role: 'Attended',
-    date: 'January 2026',
+    date: 'Jan 2026',
     description:
-      'Participated in Meta\'s open-environment hackathon focused on building sustainable tech solutions. Built an AI-powered environmental impact assessor.',
-    tags: ['Participant', 'AI/ML', 'Sustainability'],
+      'Participated in Meta\'s open-environment hackathon focused on sustainable tech solutions. Built an AI-powered environmental impact assessor.',
   },
   {
     name: 'Home2Ocean YSWS',
     role: 'Attended',
-    date: 'November 2025',
+    date: 'Nov 2025',
     description:
-      'Young Scientists Workshop Series focused on ocean technology and conservation. Worked on an underwater sensor network prototype for marine ecosystem monitoring.',
-    tags: ['Participant', 'Hardware', 'Marine Tech'],
+      'Young Scientists Workshop Series on ocean technology and conservation. Worked on an underwater sensor network prototype for marine ecosystem monitoring.',
   },
 ];
 
 export default function Hackathons() {
   return (
-    <section id="hackathons" className="relative">
-      <hr className="gradient-divider" />
-      <div className="section-wrapper">
-        <h2 className="section-title">Hackathons & Events</h2>
-        <p className="section-subtitle">Events I've organized, attended, and competed in</p>
+    <section id="hackathons" className="section-spacing bg-bg-alt">
+      <div className="section-container">
+        {/* Section label */}
+        <RevealOnScroll>
+          <p className="label mb-6">03 — Events</p>
+        </RevealOnScroll>
 
-        {/* Timeline */}
-        <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-4 md:left-1/2 md:-translate-x-px top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent/50 via-accent/20 to-transparent" />
+        <RevealOnScroll>
+          <h2 className="heading-lg mb-16">
+            Hackathons & Events
+          </h2>
+        </RevealOnScroll>
 
-          <div className="space-y-12">
-            {events.map((event, index) => (
-              <div
-                key={event.name}
-                className={`relative flex flex-col md:flex-row items-start gap-8 ${
-                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                }`}
-              >
-                {/* Timeline dot */}
-                <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-accent shadow-[0_0_12px_var(--color-accent-glow-strong)] z-10 mt-6" />
-
-                {/* Spacer for alternating layout */}
-                <div className="hidden md:block md:w-1/2" />
-
-                {/* Card */}
-                <div className="ml-12 md:ml-0 md:w-1/2 glow-border rounded-xl bg-bg-card/50 p-6">
-                  {/* Role badge */}
-                  <span
-                    className={`inline-block text-xs font-semibold px-3 py-1 rounded-full mb-3 ${
-                      event.role === 'Organized'
-                        ? 'text-amber-400 bg-amber-400/10 border border-amber-400/20'
-                        : 'text-cyan-400 bg-cyan-400/10 border border-cyan-400/20'
-                    }`}
-                  >
-                    {event.role}
-                  </span>
-
-                  <h3 className="text-text-primary font-semibold text-xl mb-2">
-                    {event.name}
-                  </h3>
-
-                  <div className="flex items-center gap-4 text-text-secondary text-sm mb-3">
-                    <span className="flex items-center gap-1">
-                      <HiOutlineCalendar size={14} />
-                      {event.date}
+        {/* Event list */}
+        <div>
+          {events.map((event, i) => (
+            <RevealOnScroll key={event.name} delay={i * 0.1}>
+              <article className="border-t border-border-dark py-10 md:py-14">
+                <div className="grid md:grid-cols-12 gap-6 md:gap-8 items-start">
+                  {/* Date + Role */}
+                  <div className="md:col-span-3 flex flex-col gap-1">
+                    <span className="mono">{event.date}</span>
+                    <span
+                      className={`label text-[0.65rem] ${
+                        event.role === 'Organized' ? 'text-accent' : 'text-fg-subtle'
+                      }`}
+                    >
+                      {event.role}
                     </span>
                   </div>
 
-                  <p className="text-text-secondary text-sm leading-relaxed mb-4">
-                    {event.description}
-                  </p>
+                  {/* Name */}
+                  <div className="md:col-span-4">
+                    <h3 className="heading-md">{event.name}</h3>
+                  </div>
 
-                  <div className="flex flex-wrap gap-1.5">
-                    {event.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-xs px-2 py-1 rounded bg-white/5 text-text-secondary"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                  {/* Description */}
+                  <div className="md:col-span-5">
+                    <p className="text-fg-muted leading-relaxed text-sm">
+                      {event.description}
+                    </p>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              </article>
+            </RevealOnScroll>
+          ))}
+          <hr className="divider" style={{ background: 'var(--color-border-dark)' }} />
         </div>
       </div>
     </section>

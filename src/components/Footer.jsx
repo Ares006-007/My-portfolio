@@ -1,8 +1,7 @@
 const navLinks = [
-  { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
   { label: 'Projects', href: '#projects' },
-  { label: 'Hackathons', href: '#hackathons' },
+  { label: 'Events', href: '#hackathons' },
   { label: 'Skills', href: '#skills' },
   { label: 'Contact', href: '#contact' },
 ];
@@ -11,28 +10,22 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative">
-      {/* Top accent border */}
-      <div className="h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
-
-      <div className="max-w-[1200px] mx-auto px-6 py-10">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Logo */}
-          <a
-            href="#home"
-            className="text-lg font-bold tracking-wider text-accent"
-            style={{ fontFamily: 'var(--font-heading)' }}
-          >
-            &lt;SMA /&gt;
-          </a>
+    <footer className="border-t border-border">
+      <div className="section-container py-10">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          {/* Copyright */}
+          <p className="label text-fg-subtle">
+            © {currentYear} Shaik Mohammad Ajhaj
+          </p>
 
           {/* Nav links */}
-          <ul className="flex flex-wrap items-center justify-center gap-6">
+          <ul className="flex flex-wrap items-center gap-6">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="text-text-secondary text-sm hover:text-accent transition-colors"
+                  className="label text-fg-subtle hover:text-fg transition-colors duration-300"
+                  data-cursor="link"
                 >
                   {link.label}
                 </a>
@@ -40,10 +33,14 @@ export default function Footer() {
             ))}
           </ul>
 
-          {/* Copyright */}
-          <p className="text-text-secondary text-sm">
-            © {currentYear} SMA
-          </p>
+          {/* Back to top */}
+          <a
+            href="#home"
+            className="label text-fg-subtle hover:text-fg transition-colors duration-300"
+            data-cursor="link"
+          >
+            Back to Top ↑
+          </a>
         </div>
       </div>
     </footer>

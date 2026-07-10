@@ -1,81 +1,108 @@
-import {
-  SiPython,
-  SiJavascript,
-  SiCplusplus,
-  SiPytorch,
-  SiFastapi,
-  SiReact,
-  SiArduino,
-  SiKicad,
-  SiGit,
-  SiDocker,
-  SiLinux,
-  SiTensorflow,
-} from 'react-icons/si';
+import { useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import RevealOnScroll from './RevealOnScroll';
 
-const skillCategories = [
+gsap.registerPlugin(ScrollTrigger);
+
+const skillGroups = [
   {
     title: 'Languages',
-    skills: [
-      { name: 'Python', icon: <SiPython /> },
-      { name: 'JavaScript', icon: <SiJavascript /> },
-      { name: 'C/C++', icon: <SiCplusplus /> },
-    ],
+    skills: ['Python', 'JavaScript', 'C/C++'],
   },
   {
-    title: 'Frameworks & Libraries',
-    skills: [
-      { name: 'PyTorch', icon: <SiPytorch /> },
-      { name: 'FastAPI', icon: <SiFastapi /> },
-      { name: 'React', icon: <SiReact /> },
-      { name: 'TensorFlow', icon: <SiTensorflow /> },
-    ],
+    title: 'Frameworks',
+    skills: ['PyTorch', 'FastAPI', 'React', 'TensorFlow'],
   },
   {
-    title: 'Tools & Platforms',
-    skills: [
-      { name: 'Arduino', icon: <SiArduino /> },
-      { name: 'KiCAD', icon: <SiKicad /> },
-      { name: 'Git', icon: <SiGit /> },
-      { name: 'Docker', icon: <SiDocker /> },
-      { name: 'Linux', icon: <SiLinux /> },
-    ],
+    title: 'Tools',
+    skills: ['Arduino', 'KiCAD', 'Git', 'Docker', 'Linux'],
   },
 ];
 
-export default function Skills() {
-  return (
-    <section id="skills" className="relative">
-      <hr className="gradient-divider" />
-      <div className="section-wrapper">
-        <h2 className="section-title">Skills</h2>
-        <p className="section-subtitle">Technologies and tools I work with</p>
+const allSkills = skillGroups.flatMap((g) => g.skills);
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {skillCategories.map((category) => (
-            <div key={category.title}>
-              <h3
-                className="text-accent text-sm font-semibold tracking-widest uppercase mb-5"
-                style={{ fontFamily: 'var(--font-heading)' }}
-              >
-                {category.title}
-              </h3>
-              <div className="space-y-3">
-                {category.skills.map((skill) => (
-                  <div
-                    key={skill.name}
-                    className="glow-border rounded-lg bg-bg-card/50 px-4 py-3 flex items-center gap-3 group cursor-default"
-                  >
-                    <span className="text-text-secondary text-lg group-hover:text-accent transition-colors">
-                      {skill.icon}
-                    </span>
-                    <span className="text-text-primary text-sm font-medium">
-                      {skill.name}
-                    </span>
-                  </div>
-                ))}
+export default function Skills() {
+  const marqueeRef = useRef(null);
+
+  useEffect(() => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced || !marqueeRef.current) return;
+
+    const el = marqueeRef.current;
+    const ctx = gsap.context(() => {
+      gsap.to(el, {
+        xPercent: -50,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: el.parentElement,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1,
+        },
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section id="skills" className="section-spacing overflow-hidden">
+      <div className="section-container">
+        {/* Section label */}
+        <RevealOnScroll>
+          <p className="label mb-6">04 — Skills</p>
+        </RevealOnScroll>
+
+        <RevealOnScroll>
+          <h2 className="heading-lg mb-20">
+            Technologies & Tools
+          </h2>
+        </RevealOnScroll>
+      </div>
+
+      {/* Horizontal scrolling marquee */}
+      <div className="relative py-12 border-y border-border overflow-hidden">
+        <div
+          ref={marqueeRef}
+          className="flex gap-8 whitespace-nowrap w-max"
+        >
+          {[...allSkills, ...allSkills].map((skill, i) => (
+            <span
+              key={`${skill}-${i}`}
+              className="text-[clamp(2.5rem,6vw,5rem)] font-bold tracking-tight text-fg/10 hover:text-fg/80 transition-colors duration-500 select-none"
+              style={{ fontFamily: 'var(--font-heading)' }}
+            >
+              {skill}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Categorized grid below */}
+      <div className="section-container mt-20">
+        <div className="grid md:grid-cols-3 gap-16">
+          {skillGroups.map((group, gi) => (
+            <RevealOnScroll key={group.title} delay={gi * 0.1}>
+              <div>
+                <p className="label mb-6">{group.title}</p>
+                <div className="space-y-4">
+                  {group.skills.map((skill) => (
+                    <div
+                      key={skill}
+                      className="flex items-center justify-between py-3 border-b border-border group"
+                    >
+                      <span className="text-fg font-medium text-sm group-hover:text-accent transition-colors duration-300">
+                        {skill}
+                      </span>
+                      <span className="mono text-fg-subtle opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        →
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            </RevealOnScroll>
           ))}
         </div>
       </div>
