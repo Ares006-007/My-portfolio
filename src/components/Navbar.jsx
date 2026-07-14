@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import MagneticButton from './MagneticButton';
 
 const navLinks = [
   { label: 'About', href: '#about' },
@@ -13,6 +12,7 @@ const navLinks = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60);
@@ -20,74 +20,145 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Track active section for 2px underline indicator
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(`#${entry.target.id}`);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    navLinks.forEach((link) => {
+      const el = document.querySelector(link.href);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? 'border-b border-border bg-bg/90 backdrop-blur-sm' : 'bg-transparent'
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      style={{
+        height: '56px',
+        backgroundColor: scrolled ? 'var(--color-canvas)' : 'transparent',
+        borderBottom: scrolled ? '1px solid var(--color-hairline-soft)' : 'none',
+      }}
     >
-      <div className="section-container flex items-center justify-between h-20">
+      <div className="section-container flex items-center justify-between h-full">
         {/* Logo */}
-        <MagneticButton strength={0.2}>
-          <a
-            href="#home"
-            className={`text-sm font-bold tracking-[0.2em] uppercase transition-colors duration-500 ${scrolled ? 'text-fg' : 'text-bg'}`}
-            data-cursor="link"
-          >
-            SMA
-          </a>
-        </MagneticButton>
+        <a
+          href="#home"
+          className="body-strong"
+          style={{
+            letterSpacing: '0.15em',
+            textTransform: 'uppercase',
+            color: scrolled ? 'var(--color-ink)' : 'var(--color-on-primary)',
+            textDecoration: 'none',
+          }}
+          data-cursor="link"
+        >
+          SMA
+        </a>
 
         {/* Desktop nav */}
-        <ul className="hidden md:flex items-center gap-10">
+        <ul className="hidden md:flex items-center" style={{ gap: 'var(--space-xxl)' }}>
           {navLinks.map((link) => (
             <li key={link.href}>
-              <MagneticButton strength={0.25}>
-                <a
-                  href={link.href}
-                  className={`label transition-colors duration-300 relative group ${scrolled ? 'text-fg-muted hover:text-fg' : 'text-bg/70 hover:text-bg'}`}
-                  data-cursor="link"
-                >
-                  {link.label}
-                  <span className={`absolute -bottom-1 left-0 w-0 h-px group-hover:w-full transition-all duration-300 ${scrolled ? 'bg-fg' : 'bg-bg'}`} />
-                </a>
-              </MagneticButton>
+              <a
+                href={link.href}
+                className="body-strong"
+                style={{
+                  color: scrolled ? 'var(--color-ink)' : 'var(--color-on-primary)',
+                  textDecoration: 'none',
+                  position: 'relative',
+                  paddingBottom: '4px',
+                }}
+                data-cursor="link"
+              >
+                {link.label}
+                {/* 2px active underline — the system's nav indicator */}
+                {activeSection === link.href && (
+                  <motion.div
+                    layoutId="navActiveIndicator"
+                    style={{
+                      position: 'absolute',
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      height: '2px',
+                      backgroundColor: scrolled ? 'var(--color-ink)' : 'var(--color-on-primary)',
+                    }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                  />
+                )}
+              </a>
             </li>
           ))}
         </ul>
 
+        {/* Mobile menu toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className={`md:hidden label transition-colors ${scrolled ? 'text-fg-muted hover:text-fg' : 'text-bg/70 hover:text-bg'}`}
+          className="md:hidden caption-sm"
+          style={{
+            color: scrolled ? 'var(--color-ink)' : 'var(--color-on-primary)',
+            background: 'none',
+            border: 'none',
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
+          }}
           data-cursor="action"
           aria-label="Toggle menu"
         >
-          {isOpen ? 'CLOSE' : 'MENU'}
+          {isOpen ? 'Close' : 'Menu'}
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile drawer — full-height from left */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-            className="md:hidden overflow-hidden border-b border-border bg-bg"
+            initial={{ x: '-100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '-100%' }}
+            transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+            style={{
+              position: 'fixed',
+              top: '56px',
+              left: 0,
+              bottom: 0,
+              width: '100%',
+              backgroundColor: 'var(--color-canvas)',
+              zIndex: 40,
+            }}
           >
-            <ul className="section-container py-8 space-y-6">
+            <ul className="section-container flex flex-col" style={{ paddingTop: 'var(--space-section)' }}>
               {navLinks.map((link, i) => (
                 <motion.li
                   key={link.href}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: -24 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.08, duration: 0.4 }}
+                  transition={{ delay: i * 0.06, duration: 0.3 }}
+                  style={{
+                    borderBottom: '1px solid var(--color-hairline-soft)',
+                  }}
                 >
                   <a
                     href={link.href}
                     onClick={() => setIsOpen(false)}
-                    className="heading-md text-fg-muted hover:text-fg transition-colors block"
+                    className="heading-lg"
+                    style={{
+                      color: 'var(--color-ink)',
+                      textDecoration: 'none',
+                      display: 'block',
+                      padding: 'var(--space-xl) 0',
+                    }}
                     data-cursor="link"
                   >
                     {link.label}
