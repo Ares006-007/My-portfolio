@@ -6,7 +6,7 @@ const events = [
     role: 'Competed',
     date: '2026',
     description:
-      'Top 800 out of thousands. Qualified for the in-person round.',
+      'Top 800 out of 30,000. Qualified for the in-person round.',
   },
   {
     name: 'Code Day 2026 v1',

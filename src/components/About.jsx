@@ -4,7 +4,7 @@ import RevealOnScroll from './RevealOnScroll';
 const stats = [
   { number: '18', label: 'Years old' },
   { number: '6+', label: 'Events produced' },
-  { number: '800', label: 'Meta hackathon rank' },
+  { number: 'Top 800', label: 'Out of 30,000 at Meta OpenEnv' },
 ];
 
 export default function About() {
