@@ -39,7 +39,7 @@ export default function Hero() {
           {/* Display campaign headline */}
           <div>
             <AnimatedText
-              text="I Build Things"
+              text="Shaik Mohammad"
               className="display-campaign"
               style={{ color: 'var(--color-ink)' }}
               trigger="load"
@@ -47,7 +47,7 @@ export default function Hero() {
               staggerDelay={0.05}
             />
             <AnimatedText
-              text="That Matter"
+              text="Ajhaj"
               className="display-campaign"
               style={{ color: 'var(--color-charcoal)' }}
               trigger="load"

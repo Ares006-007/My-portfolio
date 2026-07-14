@@ -15,6 +15,28 @@ export default function About() {
       style={{ backgroundColor: 'var(--color-soft-cloud)' }}
     >
       <div className="section-container">
+        {/* Editorial pull-quote — display-campaign at reduced scale */}
+        <RevealOnScroll>
+          <div style={{ marginBottom: 'var(--space-xl)' }}>
+            <AnimatedText
+              text="I Build Things"
+              className="display-campaign"
+              style={{
+                color: 'var(--color-ink)',
+                fontSize: 'clamp(36px, 6vw, 72px)',
+              }}
+            />
+            <AnimatedText
+              text="That Matter"
+              className="display-campaign"
+              style={{
+                color: 'var(--color-charcoal)',
+                fontSize: 'clamp(36px, 6vw, 72px)',
+              }}
+            />
+          </div>
+        </RevealOnScroll>
+
         {/* Section header — heading-xl, uppercase */}
         <RevealOnScroll>
           <h2 className="heading-xl" style={{ marginBottom: 'var(--space-section)' }}>
