@@ -9,9 +9,9 @@ export default function Hero() {
       id="home"
       className="min-h-screen flex flex-col justify-center relative overflow-hidden"
     >
-      {/* Background WebGL Layer */}
+      {/* Background WebGL Layer — atmospheric content, not decorative chrome */}
       <div className="absolute inset-0 z-0">
-        <ErrorBoundary fallback={<div className="w-full h-full bg-gradient-to-br from-fg via-[#1a1a1a] to-fg" />}>
+        <ErrorBoundary fallback={<div className="w-full h-full" style={{ backgroundColor: 'var(--color-ink)' }} />}>
           <Ballpit
             count={100}
             gravity={0.1}
@@ -29,74 +29,86 @@ export default function Hero() {
         </ErrorBoundary>
       </div>
 
-      {/* Clean overlay for text readability without washing out the cinematic effect */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-r from-black/80 via-black/40 to-transparent pointer-events-none" />
+      {/* Simple dark overlay for text readability — flat, no gradient */}
+      <div
+        className="absolute inset-0 z-10 pointer-events-none"
+        style={{ backgroundColor: 'rgba(0, 0, 0, 0.6)' }}
+      />
 
       {/* Foreground Content */}
-      <div className="section-container min-h-screen flex flex-col justify-between pt-32 md:pt-40 pb-16 relative z-20 pointer-events-none">
+      <div className="section-container min-h-screen flex flex-col justify-between relative z-20 pointer-events-none"
+        style={{ paddingTop: '140px', paddingBottom: '48px' }}
+      >
         
         {/* Main Content Block */}
         <div className="flex-1 flex flex-col justify-center">
-          {/* Label */}
+          {/* Display campaign headline — the hero's single typographic moment */}
+          <div>
+            <AnimatedText
+              text="Shaik Mohammad"
+              className="display-campaign"
+              style={{ color: 'var(--color-on-primary)' }}
+              trigger="load"
+              delay={0.3}
+              staggerDelay={0.05}
+            />
+            <AnimatedText
+              text="Ajhaj"
+              className="display-campaign"
+              style={{ color: 'rgba(255, 255, 255, 0.7)' }}
+              trigger="load"
+              delay={0.6}
+              staggerDelay={0.05}
+            />
+          </div>
+
+          {/* Subtitle — quiet body tier, no middle ground */}
           <motion.p
-            className="label mb-12 text-bg/90"
-            initial={{ opacity: 0, y: 20 }}
+            className="body-md max-w-lg"
+            style={{
+              color: 'rgba(255, 255, 255, 0.8)',
+              marginTop: 'var(--space-xxl)',
+            }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{ duration: 0.5, delay: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            Portfolio — 2026
+            Tech entrepreneur and engineering student building at the intersection
+            of space technology, hardware, and artificial intelligence.
           </motion.p>
 
-        {/* Main heading — elegant layout */}
-        <div className="max-w-4xl">
-          <AnimatedText
-            text="Shaik Mohammad"
-            className="heading-xl text-bg"
-            trigger="load"
-            delay={0.4}
-            staggerDelay={0.06}
-          />
-          <AnimatedText
-            text="Ajhaj."
-            className="heading-xl italic mt-2 text-bg/70"
-            trigger="load"
-            delay={0.7}
-            staggerDelay={0.06}
-          />
+          {/* Single primary CTA — one per viewport */}
+          <motion.div
+            className="pointer-events-auto"
+            style={{ marginTop: 'var(--space-section)' }}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 1.3, ease: [0.25, 0.1, 0.25, 1] }}
+          >
+            <a href="#projects" className="btn-outline" data-cursor="link">
+              View Work
+            </a>
+          </motion.div>
         </div>
 
-        {/* Subtitle / Roles */}
+        {/* Bottom scroll indicator — minimal */}
         <motion.div
-          className="mt-20 flex flex-col gap-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.1, ease: [0.25, 0.1, 0.25, 1] }}
-        >
-          <p className="body-lg max-w-lg leading-relaxed text-bg/90 font-light">
-            A tech entrepreneur and engineering student building at the intersection of
-            space technology, hardware, and artificial intelligence.
-          </p>
-        </motion.div>
-
-        </div>
-
-        {/* Bottom row — scroll indicator naturally pushed to bottom */}
-        <motion.div
-          className="flex items-center justify-between mt-12"
+          className="flex items-center"
+          style={{ gap: 'var(--space-sm)' }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 1.6 }}
+          transition={{ duration: 0.5, delay: 1.6 }}
         >
-          <div className="flex items-center gap-4 text-bg/80">
-            <span className="label text-bg/80">Scroll</span>
-            <motion.span
-              className="text-sm"
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              ↓
-            </motion.span>
-          </div>
+          <span className="caption-sm" style={{ color: 'rgba(255, 255, 255, 0.5)' }}>
+            Scroll
+          </span>
+          <motion.span
+            style={{ color: 'rgba(255, 255, 255, 0.5)', fontSize: '14px' }}
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            ↓
+          </motion.span>
         </motion.div>
       </div>
     </section>
