@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import RevealOnScroll from './RevealOnScroll';
 import AnimatedText from './AnimatedText';
-import MagneticButton from './MagneticButton';
 
 const socialLinks = [
   { label: 'GitHub', href: 'https://github.com' },
@@ -25,24 +24,24 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="section-spacing bg-bg-alt">
+    <section
+      id="contact"
+      className="section-spacing"
+      style={{ backgroundColor: 'var(--color-soft-cloud)' }}
+    >
       <div className="section-container">
-        {/* Section label */}
-        <RevealOnScroll>
-          <p className="label mb-10">05 — Contact</p>
-        </RevealOnScroll>
-
         <AnimatedText
-          text="Let's Work Together."
-          className="heading-lg italic mb-20 text-fg-muted"
+          text="Let's Work Together"
+          className="heading-xl"
+          style={{ marginBottom: 'var(--space-section)' }}
         />
 
-        <div className="grid md:grid-cols-2 gap-20 max-w-4xl">
+        <div className="grid md:grid-cols-2" style={{ gap: 'var(--space-section)', maxWidth: '1000px' }}>
           {/* Form */}
           <RevealOnScroll>
-            <form onSubmit={handleSubmit} className="space-y-10">
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
               <div>
-                <label htmlFor="contact-name" className="label block mb-3">
+                <label htmlFor="contact-name" className="body-strong block" style={{ marginBottom: 'var(--space-xs)' }}>
                   Name
                 </label>
                 <input
@@ -52,14 +51,17 @@ export default function Contact() {
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full bg-transparent border-b border-border-dark py-3 text-fg placeholder-fg-subtle/50 focus:border-fg focus:outline-none transition-colors text-sm"
+                  className="w-full bg-transparent py-3 text-fg placeholder-fg-subtle/50 focus:outline-none transition-colors body-md"
+                  style={{
+                    borderBottom: '1px solid var(--color-hairline)',
+                    color: 'var(--color-ink)',
+                  }}
                   placeholder="Your name"
-                  data-cursor="action"
                 />
               </div>
 
               <div>
-                <label htmlFor="contact-email" className="label block mb-3">
+                <label htmlFor="contact-email" className="body-strong block" style={{ marginBottom: 'var(--space-xs)' }}>
                   Email
                 </label>
                 <input
@@ -69,14 +71,17 @@ export default function Contact() {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full bg-transparent border-b border-border-dark py-3 text-fg placeholder-fg-subtle/50 focus:border-fg focus:outline-none transition-colors text-sm"
+                  className="w-full bg-transparent py-3 text-fg placeholder-fg-subtle/50 focus:outline-none transition-colors body-md"
+                  style={{
+                    borderBottom: '1px solid var(--color-hairline)',
+                    color: 'var(--color-ink)',
+                  }}
                   placeholder="you@example.com"
-                  data-cursor="action"
                 />
               </div>
 
               <div>
-                <label htmlFor="contact-message" className="label block mb-3">
+                <label htmlFor="contact-message" className="body-strong block" style={{ marginBottom: 'var(--space-xs)' }}>
                   Message
                 </label>
                 <textarea
@@ -86,54 +91,58 @@ export default function Contact() {
                   rows={4}
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full bg-transparent border-b border-border-dark py-3 text-fg placeholder-fg-subtle/50 focus:border-fg focus:outline-none transition-colors text-sm resize-none"
+                  className="w-full bg-transparent py-3 text-fg placeholder-fg-subtle/50 focus:outline-none transition-colors resize-none body-md"
+                  style={{
+                    borderBottom: '1px solid var(--color-hairline)',
+                    color: 'var(--color-ink)',
+                  }}
                   placeholder="Tell me about your idea..."
-                  data-cursor="action"
                 />
               </div>
 
-              <MagneticButton strength={0.15}>
+              <div style={{ marginTop: 'var(--space-md)' }}>
                 <button
                   type="submit"
-                  className="label py-4 px-10 border border-border text-fg hover:bg-fg hover:text-bg hover:border-fg transition-all duration-300 cursor-pointer"
-                  data-cursor="action"
+                  className="btn-primary"
                 >
                   {submitted ? 'Sent ✓' : 'Send Message'}
                 </button>
-              </MagneticButton>
+              </div>
             </form>
           </RevealOnScroll>
 
           {/* Info */}
-          <RevealOnScroll delay={0.15} direction="right">
-            <div className="flex flex-col justify-between h-full">
+          <RevealOnScroll delay={0.1} direction="right">
+            <div style={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'space-between' }}>
               <div>
-                <p className="label mb-4">Email</p>
+                <p className="body-strong" style={{ marginBottom: 'var(--space-sm)' }}>Email</p>
                 <a
                   href="mailto:hello@example.com"
-                  className="text-fg-muted text-sm hover:text-fg transition-colors"
+                  className="body-md"
+                  style={{ color: 'var(--color-mute)', textDecoration: 'none' }}
                   data-cursor="link"
                 >
                   hello@example.com
                 </a>
               </div>
 
-              <div className="mt-12">
-                <p className="label mb-6">Find Me Online</p>
-                <div className="flex items-center gap-2">
+              <div style={{ marginTop: 'var(--space-section)' }}>
+                <p className="body-strong" style={{ marginBottom: 'var(--space-sm)' }}>Find Me Online</p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)', flexWrap: 'wrap' }}>
                   {socialLinks.map((link, i) => (
-                    <span key={link.label} className="flex items-center gap-2">
+                    <span key={link.label} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
                       <a
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-fg-muted text-sm hover:text-fg transition-colors duration-300"
+                        className="body-md"
+                        style={{ color: 'var(--color-mute)', textDecoration: 'none' }}
                         data-cursor="link"
                       >
                         {link.label}
                       </a>
                       {i < socialLinks.length - 1 && (
-                        <span className="text-fg-subtle text-sm">/</span>
+                        <span className="body-md" style={{ color: 'var(--color-hairline)' }}>/</span>
                       )}
                     </span>
                   ))}
