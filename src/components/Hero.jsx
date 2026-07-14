@@ -39,7 +39,7 @@ export default function Hero() {
           {/* Display campaign headline */}
           <div>
             <AnimatedText
-              text="Shaik Mohammad"
+              text="I Build Things"
               className="display-campaign"
               style={{ color: 'var(--color-ink)' }}
               trigger="load"
@@ -47,7 +47,7 @@ export default function Hero() {
               staggerDelay={0.05}
             />
             <AnimatedText
-              text="Ajhaj"
+              text="That Matter"
               className="display-campaign"
               style={{ color: 'var(--color-charcoal)' }}
               trigger="load"
@@ -67,8 +67,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 1.0, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            Tech entrepreneur and engineering student building at the intersection
-            of space technology, hardware, and artificial intelligence.
+            Engineer, organizer, mentor — from hackathon stages to rocket science classrooms.
           </motion.p>
 
           {/* Single primary CTA */}
@@ -80,7 +79,7 @@ export default function Hero() {
             transition={{ duration: 0.5, delay: 1.3, ease: [0.25, 0.1, 0.25, 1] }}
           >
             <a href="#projects" className="btn-primary" data-cursor="link">
-              View Work
+              See My Work
             </a>
           </motion.div>
         </div>
