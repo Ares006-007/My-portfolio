@@ -63,7 +63,7 @@ export default function CustomCursor() {
   if (isTouch) return null;
 
   const isExpanded = cursorState === 'expanded';
-  const size = isExpanded ? 56 : 0;
+  const size = isExpanded ? 56 : 12;
 
   return (
     <>
@@ -76,6 +76,7 @@ export default function CustomCursor() {
           height: size,
           translateX: '-50%',
           translateY: '-50%',
+          zIndex: 99999, // Ensure it's above everything including WebGL canvas
         }}
         animate={{
           width: size,
