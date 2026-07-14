@@ -3,7 +3,6 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import CustomCursor from './components/CustomCursor';
-import Noise from './components/Noise';
 import ScrollProgress from './components/ScrollProgress';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -25,7 +24,6 @@ export default function App() {
 
   return (
     <>
-      <Noise />
       <CustomCursor />
       <ScrollProgress />
       <Navbar />
