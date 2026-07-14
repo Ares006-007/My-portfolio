@@ -17,32 +17,35 @@ const skillGroups = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="section-spacing">
+    <section id="skills" className="section-spacing" style={{ backgroundColor: 'var(--color-canvas)' }}>
       <div className="section-container">
-        {/* Section label */}
+        {/* Section header — heading-xl, uppercase */}
         <RevealOnScroll>
-          <p className="label mb-10">04 — Skills</p>
-        </RevealOnScroll>
-
-        <RevealOnScroll>
-          <h2 className="heading-lg italic mb-24 text-fg-muted">
-            Technologies & Tools.
+          <h2 className="heading-xl" style={{ marginBottom: 'var(--space-section)' }}>
+            Technologies & Tools
           </h2>
         </RevealOnScroll>
 
-        {/* Categorized grid below */}
-        <div className="grid md:grid-cols-3 gap-20">
+        {/* Categorized grid — flat lists with hairline dividers */}
+        <div className="grid md:grid-cols-3" style={{ gap: 'var(--space-section)' }}>
           {skillGroups.map((group, gi) => (
-            <RevealOnScroll key={group.title} delay={gi * 0.1}>
-              <div className="bg-bg-alt/30 border border-border rounded-2xl p-8 hover:bg-bg-alt/60 transition-colors duration-500 h-full">
-                <p className="label mb-8 text-accent">{group.title}</p>
-                <div className="space-y-4">
+            <RevealOnScroll key={group.title} delay={gi * 0.08}>
+              <div
+                style={{
+                  borderTop: '1px solid var(--color-hairline)',
+                  paddingTop: 'var(--space-xl)',
+                }}
+              >
+                <p className="body-strong" style={{ marginBottom: 'var(--space-xl)' }}>
+                  {group.title}
+                </p>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
                   {group.skills.map((skill) => (
-                    <div
-                      key={skill}
-                      className="flex items-center justify-between group"
-                    >
-                      <span className="text-fg-muted font-light group-hover:text-fg transition-colors duration-300">
+                    <div key={skill}>
+                      <span
+                        className="body-md"
+                        style={{ color: 'var(--color-mute)' }}
+                      >
                         {skill}
                       </span>
                     </div>
