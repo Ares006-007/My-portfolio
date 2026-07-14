@@ -28,7 +28,7 @@ export default function Footer() {
                 SMA
               </p>
               <p className="body-md" style={{ color: 'var(--color-mute)', maxWidth: '32ch', fontSize: '14px' }}>
-                Building at the intersection of space technology, hardware, and artificial intelligence.
+                Engineer. Organizer. Mentor.
               </p>
             </div>
           </div>
