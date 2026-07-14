@@ -2,25 +2,48 @@ import RevealOnScroll from './RevealOnScroll';
 
 const events = [
   {
-    name: 'Code Day 2026',
-    role: 'Organized',
-    date: 'Mar 2026',
-    description:
-      'Led the organization of a city-wide coding marathon with 200+ student developers. Managed sponsorships, mentors, and logistics for a 24-hour hackathon.',
-  },
-  {
     name: 'Meta OpenEnv Hackathon',
-    role: 'Attended',
-    date: 'Jan 2026',
+    role: 'Competed',
+    date: '2026',
     description:
-      'Participated in Meta\'s open-environment hackathon focused on sustainable tech solutions. Built an AI-powered environmental impact assessor.',
+      'Top 800 out of thousands. Qualified for the in-person round.',
   },
   {
-    name: 'Home2Ocean YSWS',
-    role: 'Attended',
-    date: 'Nov 2025',
+    name: 'Code Day 2026 v1',
+    role: 'Organized',
+    date: '2026',
     description:
-      'Young Scientists Workshop Series on ocean technology and conservation. Worked on an underwater sensor network prototype for marine ecosystem monitoring.',
+      'Organized the first edition of Code Day from the ground up.',
+  },
+  {
+    name: 'Daydream Bengaluru',
+    role: 'Organized',
+    description:
+      'Organized and produced Daydream Bengaluru.',
+  },
+  {
+    name: 'Campfire Bengaluru',
+    role: 'Organized',
+    description:
+      'Organized and produced Campfire Bengaluru.',
+  },
+  {
+    name: 'Comic Con India',
+    role: 'Volunteered',
+    description:
+      'Managed panelists, requirements, and stage setup on the Panel Stage team.',
+  },
+  {
+    name: 'BookMyShow — Def Leppard Bengaluru',
+    role: 'Production',
+    description:
+      'Managed concert stalls for the Def Leppard Bengaluru show.',
+  },
+  {
+    name: 'BookMyShow — OG Tour Thaman Bengaluru',
+    role: 'Production',
+    description:
+      'Ran box office operations for the Thaman Bengaluru concert.',
   },
 ];
 
@@ -56,7 +79,7 @@ export default function Hackathons() {
                       className="caption-md"
                       style={{ color: 'var(--color-mute)' }}
                     >
-                      {event.date}
+                      {event.date || '—'}
                     </span>
                   </div>
 
@@ -104,3 +127,4 @@ export default function Hackathons() {
     </section>
   );
 }
+
