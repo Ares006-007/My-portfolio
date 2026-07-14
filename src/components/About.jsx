@@ -37,16 +37,15 @@ export default function About() {
           </div>
         </RevealOnScroll>
 
-        {/* Section header — heading-xl, uppercase */}
-        <RevealOnScroll>
-          <h2 className="heading-xl" style={{ marginBottom: 'var(--space-section)' }}>
-            About
-          </h2>
-        </RevealOnScroll>
-
         <div className="grid md:grid-cols-12" style={{ gap: 'var(--space-section)' }}>
           {/* Bio — takes 7 cols */}
           <div className="md:col-span-7">
+            {/* Section header — heading-xl, uppercase */}
+            <RevealOnScroll>
+              <h2 className="heading-xl" style={{ marginBottom: 'var(--space-section)' }}>
+                About
+              </h2>
+            </RevealOnScroll>
             <AnimatedText
               text="I organize mass-scale tech events, compete in international hackathons, and mentor teenagers in astrophysics — then come home and write code."
               className="body-md"
@@ -69,7 +68,7 @@ export default function About() {
           </div>
 
           {/* Stats — takes 4 cols, offset by 1 */}
-          <div className="md:col-span-4 md:col-start-9 flex flex-col justify-center">
+          <div className="md:col-span-4 md:col-start-9">
             <div
               style={{
                 backgroundColor: 'var(--color-canvas)',
