@@ -22,7 +22,7 @@ export default function Skills() {
         {/* Section header — heading-xl, uppercase */}
         <RevealOnScroll>
           <h2 className="heading-xl" style={{ marginBottom: 'var(--space-section)' }}>
-            Technologies & Tools
+            Toolkit
           </h2>
         </RevealOnScroll>
 

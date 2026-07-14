@@ -31,7 +31,7 @@ export default function Contact() {
     >
       <div className="section-container">
         <AnimatedText
-          text="Let's Work Together"
+          text="Get In Touch"
           className="heading-xl"
           style={{ marginBottom: 'var(--space-section)' }}
         />
@@ -96,7 +96,7 @@ export default function Contact() {
                     borderBottom: '1px solid var(--color-hairline)',
                     color: 'var(--color-ink)',
                   }}
-                  placeholder="Tell me about your idea..."
+                  placeholder="What's on your mind?"
                 />
               </div>
 
@@ -105,7 +105,7 @@ export default function Contact() {
                   type="submit"
                   className="btn-primary"
                 >
-                  {submitted ? 'Sent ✓' : 'Send Message'}
+                  {submitted ? 'Sent' : 'Send Message'}
                 </button>
               </div>
             </form>
@@ -127,7 +127,7 @@ export default function Contact() {
               </div>
 
               <div style={{ marginTop: 'var(--space-section)' }}>
-                <p className="body-strong" style={{ marginBottom: 'var(--space-sm)' }}>Find Me Online</p>
+                <p className="body-strong" style={{ marginBottom: 'var(--space-sm)' }}>Elsewhere</p>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)', flexWrap: 'wrap' }}>
                   {socialLinks.map((link, i) => (
                     <span key={link.label} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
