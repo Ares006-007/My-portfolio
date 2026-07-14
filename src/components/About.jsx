@@ -3,8 +3,8 @@ import RevealOnScroll from './RevealOnScroll';
 
 const stats = [
   { number: '18', label: 'Years old' },
-  { number: '3+', label: 'Domains' },
-  { number: '3', label: 'Hackathons' },
+  { number: '6+', label: 'Events produced' },
+  { number: '800', label: 'Meta hackathon rank' },
 ];
 
 export default function About() {
@@ -26,7 +26,7 @@ export default function About() {
           {/* Bio — takes 7 cols */}
           <div className="md:col-span-7">
             <AnimatedText
-              text="I'm a tech entrepreneur and university student exploring the frontiers where space engineering, hardware design, and artificial intelligence converge."
+              text="I organize mass-scale tech events, compete in international hackathons, and mentor teenagers in astrophysics — then come home and write code."
               className="body-md"
               style={{ marginBottom: 'var(--space-xl)', maxWidth: '52ch', color: 'var(--color-ink)' }}
             />
@@ -35,27 +35,13 @@ export default function About() {
                 className="body-md"
                 style={{
                   color: 'var(--color-mute)',
-                  marginBottom: 'var(--space-xl)',
                   maxWidth: '52ch',
                 }}
               >
-                From organizing hackathons that bring together hundreds of young
-                builders to designing embedded systems and training neural networks,
-                I believe in learning by building. Every project is an opportunity
-                to push boundaries and create something meaningful.
-              </p>
-            </RevealOnScroll>
-            <RevealOnScroll delay={0.2}>
-              <p
-                className="body-md"
-                style={{
-                  color: 'var(--color-mute)',
-                  maxWidth: '52ch',
-                }}
-              >
-                When I'm not coding or soldering, you'll find me reading about
-                orbital mechanics, contributing to open-source, or mentoring
-                fellow students in their tech journeys.
+                My work spans event production for audiences of thousands, stage management
+                at Comic Con and BookMyShow concerts, a top-800 finish at Meta's OpenEnv
+                Hackathon, and a youth STEM mentorship program where I taught rocket science,
+                black holes, and the Big Bang theory.
               </p>
             </RevealOnScroll>
           </div>
@@ -97,3 +83,4 @@ export default function About() {
     </section>
   );
 }
+
