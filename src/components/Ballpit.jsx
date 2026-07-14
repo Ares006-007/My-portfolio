@@ -558,10 +558,10 @@ const X = {
   ambientIntensity: 1,
   lightIntensity: 200,
   materialParams: {
-    metalness: 0.5,
-    roughness: 0.5,
+    metalness: 0.8,
+    roughness: 0.15,
     clearcoat: 1,
-    clearcoatRoughness: 0.15
+    clearcoatRoughness: 0.05
   },
   minSize: 0.5,
   maxSize: 1,
