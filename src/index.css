@@ -1,21 +1,46 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════
-   DESIGN SYSTEM — Light, Minimalist, Premium
+   DESIGN SYSTEM — Editorial, Content-First
+   Inspired by Nike's restraint & contrast
    ═══════════════════════════════════════════ */
 @theme {
-  --color-bg: #F7F4EE;
-  --color-bg-alt: #EFECE6;
-  --color-fg: #111111;
-  --color-fg-muted: #555555;
-  --color-fg-subtle: #888888;
-  --color-accent: #1F3B2D;
-  --color-highlight: #C8A96B;
-  --color-border: #E0DDD6;
-  --color-border-dark: #C2BFB8;
-  --font-heading: 'Playfair Display', serif;
+  /* ── Canvas & Ink (the 95%) ── */
+  --color-ink: #111111;
+  --color-canvas: #ffffff;
+  --color-on-primary: #ffffff;
+  --color-soft-cloud: #f5f5f5;
+
+  /* ── Text Hierarchy ── */
+  --color-charcoal: #39393b;
+  --color-mute: #707072;
+  --color-stone: #9e9ea0;
+
+  /* ── Hairlines (only "elevation") ── */
+  --color-hairline: #cacacb;
+  --color-hairline-soft: #e5e5e5;
+
+  /* ── Semantic (signals only, never chrome) ── */
+  --color-active: #007d48;
+  --color-highlight: #1151ff;
+
+  /* ── Fonts ── */
+  --font-display: 'Bebas Neue', sans-serif;
   --font-body: 'Inter', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+
+  /* ── Spacing (8px grid) ── */
+  --space-xxs: 2px;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 18px;
+  --space-xl: 24px;
+  --space-xxl: 30px;
+  --space-section: 48px;
+
+  /* ── Radius ── */
+  --radius-none: 0px;
+  --radius-pill: 9999px;
 }
 
 /* ═══════════════════════════════════════════
@@ -31,16 +56,18 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+  scroll-padding-top: 4rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   font-family: var(--font-body);
-  background-color: var(--color-bg);
-  color: var(--color-fg);
-  line-height: 1.7;
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
   overflow-x: hidden;
   min-height: 100vh;
   cursor: none;
@@ -54,81 +81,266 @@ body {
 }
 
 ::selection {
-  background: var(--color-accent);
-  color: #fff;
+  background: var(--color-ink);
+  color: var(--color-on-primary);
 }
 
 /* ═══════════════════════════════════════════
-   TYPOGRAPHY UTILITIES
+   TYPOGRAPHY — Extreme Contrast System
+   Billboard (display) → Catalog (body/UI)
    ═══════════════════════════════════════════ */
-.label {
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.18em;
+
+/* Display tier — HERO ONLY */
+.display-campaign {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 8vw, 96px);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.01em;
   text-transform: uppercase;
-  color: var(--color-fg-subtle);
 }
 
+/* Section headers */
 .heading-xl {
-  font-family: var(--font-heading);
-  font-weight: 400;
-  font-size: clamp(2.75rem, 6.5vw, 5.5rem);
-  line-height: 0.95;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 1.2;
   letter-spacing: -0.01em;
+  text-transform: uppercase;
 }
 
 .heading-lg {
-  font-family: var(--font-heading);
-  font-weight: 400;
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  line-height: 1.05;
-  letter-spacing: -0.01em;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: 0;
 }
 
 .heading-md {
-  font-family: var(--font-heading);
+  font-family: var(--font-body);
   font-weight: 500;
-  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-  line-height: 1.2;
+  font-size: 16px;
+  line-height: 1.75;
+  letter-spacing: 0;
 }
 
-.body-lg {
-  font-size: 1.2rem;
-  line-height: 1.8;
-  color: var(--color-fg-muted);
+/* Body */
+.body-md {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0;
 }
 
-.body-readable {
-  max-width: 38ch;
+.body-strong {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0;
 }
 
-.mono {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  letter-spacing: 0.05em;
-  color: var(--color-fg-subtle);
+/* Caption & Utility */
+.caption-md {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+.caption-sm {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+.utility-xs {
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 500;
+  line-height: 1.75;
+  letter-spacing: 0;
+}
+
+/* Legacy .label class — now maps to caption-sm uppercase */
+.label {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-mute);
 }
 
 /* ═══════════════════════════════════════════
-   LAYOUT UTILITIES
+   LAYOUT — 8px Grid System
    ═══════════════════════════════════════════ */
 .section-container {
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 0 clamp(1.5rem, 4vw, 6rem);
+  padding-left: clamp(24px, 4vw, 80px);
+  padding-right: clamp(24px, 4vw, 80px);
 }
 
 .section-spacing {
-  padding-top: clamp(10rem, 20vw, 24rem);
-  padding-bottom: clamp(10rem, 20vw, 24rem);
+  padding-top: var(--space-section);
+  padding-bottom: var(--space-section);
+}
+
+/* Responsive section rhythm */
+@media (max-width: 1023px) {
+  .section-spacing {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+}
+
+@media (max-width: 599px) {
+  .section-spacing {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
 }
 
 .divider {
   height: 1px;
-  background: var(--color-border);
-  opacity: 0.6;
+  background: var(--color-hairline);
   border: none;
   width: 100%;
+}
+
+/* ═══════════════════════════════════════════
+   BUTTONS — Pill Shape Only
+   ═══════════════════════════════════════════ */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-ink);
+  color: var(--color-on-primary);
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  padding: 16px 32px;
+  height: 48px;
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn-primary:active {
+  transform: scale(0.95);
+  opacity: 0.7;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-soft-cloud);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  padding: 16px 32px;
+  height: 48px;
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn-secondary:active {
+  transform: scale(0.95);
+  opacity: 0.7;
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  padding: 12px 24px;
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn-outline:active {
+  transform: scale(0.95);
+  opacity: 0.7;
+}
+
+/* ═══════════════════════════════════════════
+   FILTER CHIPS — Pill, Inverted on Active
+   ═══════════════════════════════════════════ */
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-hairline);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.filter-chip:active {
+  transform: scale(0.95);
+  opacity: 0.7;
+}
+
+.filter-chip-active {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-ink);
+  color: var(--color-on-primary);
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-ink);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.filter-chip-active:active {
+  transform: scale(0.95);
+  opacity: 0.7;
 }
 
 /* ═══════════════════════════════════════════
@@ -141,7 +353,7 @@ body {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: var(--color-fg);
+  background: var(--color-ink);
   pointer-events: none;
   z-index: 9999;
   mix-blend-mode: difference;
@@ -151,7 +363,7 @@ body {
   width: 56px;
   height: 56px;
   background: transparent;
-  border: 1.5px solid var(--color-fg);
+  border: 1.5px solid var(--color-ink);
   mix-blend-mode: normal;
 }
 
@@ -159,11 +371,11 @@ body {
   position: fixed;
   pointer-events: none;
   z-index: 10000;
-  font-size: 0.6rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-fg);
+  color: var(--color-ink);
 }
 
 @media (pointer: coarse) {
@@ -174,7 +386,7 @@ body {
 }
 
 /* ═══════════════════════════════════════════
-   SCROLLBAR — minimal
+   SCROLLBAR — Minimal
    ═══════════════════════════════════════════ */
 ::-webkit-scrollbar {
   width: 4px;
@@ -185,12 +397,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-border-dark);
+  background: var(--color-hairline);
   border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-fg-subtle);
+  background: var(--color-mute);
 }
 
 /* ═══════════════════════════════════════════
@@ -201,7 +413,7 @@ body {
   top: 0;
   left: 0;
   height: 2px;
-  background: var(--color-accent);
+  background: var(--color-ink);
   transform-origin: left;
   z-index: 9998;
 }
@@ -210,7 +422,7 @@ body {
    FOCUS STYLES
    ═══════════════════════════════════════════ */
 :focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-ink);
   outline-offset: 3px;
 }
 
