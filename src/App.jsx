@@ -7,6 +7,7 @@ import ScrollProgress from './components/ScrollProgress';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
+import Library from './components/Library';
 import Projects from './components/Projects';
 import Hackathons from './components/Hackathons';
 import Skills from './components/Skills';
@@ -30,6 +31,7 @@ export default function App() {
       <main>
         <Hero />
         <About />
+        <Library />
         <Projects />
         <Hackathons />
         <Skills />
