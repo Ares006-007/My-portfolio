@@ -78,7 +78,15 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 1.3, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            <a href="#projects" className="btn-primary" data-cursor="link">
+            <a
+              href="#projects"
+              className="btn-primary"
+              data-cursor="link"
+              onClick={(e) => {
+                e.preventDefault();
+                document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
               See My Work
             </a>
           </motion.div>

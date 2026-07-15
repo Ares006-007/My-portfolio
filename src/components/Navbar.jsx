@@ -42,6 +42,13 @@ export default function Navbar() {
     return () => observer.disconnect();
   }, []);
 
+  // Programmatic scroll — avoids HashRouter conflicts with # anchors
+  const scrollTo = (e, selector) => {
+    e.preventDefault();
+    const el = document.querySelector(selector);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <nav
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
@@ -55,6 +62,7 @@ export default function Navbar() {
         {/* Logo */}
         <a
           href="#home"
+          onClick={(e) => scrollTo(e, '#home')}
           className="body-strong"
           style={{
             letterSpacing: '0.15em',
@@ -73,6 +81,7 @@ export default function Navbar() {
             <li key={link.href}>
               <a
                 href={link.href}
+                onClick={(e) => scrollTo(e, link.href)}
                 className="body-strong"
                 style={{
                   color: scrolled ? 'var(--color-ink)' : 'var(--color-on-primary)',
@@ -152,7 +161,10 @@ export default function Navbar() {
                 >
                   <a
                     href={link.href}
-                    onClick={() => setIsOpen(false)}
+                    onClick={(e) => {
+                      scrollTo(e, link.href);
+                      setIsOpen(false);
+                    }}
                     className="heading-lg"
                     style={{
                       color: 'var(--color-ink)',

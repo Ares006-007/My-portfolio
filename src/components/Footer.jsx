@@ -43,6 +43,10 @@ export default function Footer() {
                 <li key={link.href}>
                   <a
                     href={link.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document.querySelector(link.href)?.scrollIntoView({ behavior: 'smooth' });
+                    }}
                     className="caption-md"
                     style={{ color: 'var(--color-mute)', textDecoration: 'none' }}
                     data-cursor="link"
@@ -85,6 +89,10 @@ export default function Footer() {
             </p>
             <a
               href="#home"
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
               className="caption-md"
               style={{ color: 'var(--color-mute)', textDecoration: 'none' }}
               data-cursor="link"
