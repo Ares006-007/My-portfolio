@@ -169,70 +169,80 @@ export default function BooksPage() {
         </div>
       </header>
 
-      {/* Featured Book */}
-      <section className="books-featured section-spacing">
+      {/* Featured Book — Editorial Spread Card */}
+      <section className="books-featured-section">
         <div className="section-container">
           <RevealOnScroll>
-            <p className="label" style={{ marginBottom: 'var(--space-xl)' }}>
-              Currently Reading
-            </p>
-          </RevealOnScroll>
-          <RevealOnScroll delay={0.05}>
-            <div className="books-featured-grid">
-              <div className="books-featured-cover">
-                {renderCover(featuredBook)}
-              </div>
-              <div className="books-featured-info">
-                <h2
-                  className="heading-lg"
-                  style={{ marginBottom: 'var(--space-sm)' }}
-                >
-                  {featuredBook.title}
-                </h2>
-                <p
-                  className="caption-md"
-                  style={{
-                    color: 'var(--color-mute)',
-                    marginBottom: 'var(--space-xl)',
-                  }}
-                >
-                  {featuredBook.author}
-                </p>
-                <p
-                  className="body-md"
-                  style={{
-                    color: 'var(--color-charcoal)',
-                    maxWidth: '44ch',
-                    lineHeight: '1.7',
-                  }}
-                >
-                  {featuredBook.note}
-                </p>
+            <div className="books-featured-card">
+              <p className="label" style={{ marginBottom: 'var(--space-xl)' }}>
+                Currently Reading
+              </p>
+              <div className="books-featured-grid">
+                <div className="books-featured-cover">
+                  {renderCover(featuredBook)}
+                </div>
+                <div className="books-featured-info">
+                  <h2
+                    className="heading-lg"
+                    style={{ marginBottom: 'var(--space-sm)' }}
+                  >
+                    {featuredBook.title}
+                  </h2>
+                  <p
+                    className="caption-md"
+                    style={{
+                      color: 'var(--color-mute)',
+                      marginBottom: 'var(--space-xl)',
+                    }}
+                  >
+                    {featuredBook.author}
+                  </p>
+                  <div className="books-featured-note">
+                    <p
+                      className="body-md"
+                      style={{
+                        color: 'var(--color-charcoal)',
+                        lineHeight: '1.7',
+                      }}
+                    >
+                      {featuredBook.note}
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </RevealOnScroll>
         </div>
       </section>
 
-      {/* Category Rows */}
+      {/* Reading Note — Personal Reflection */}
+      <section className="books-note-section">
+        <div className="section-container">
+          <RevealOnScroll>
+            <blockquote className="books-reading-note">
+              <p>
+                "I read to understand how things work — systems, people, ideas.
+                Every book here taught me something I still use."
+              </p>
+            </blockquote>
+          </RevealOnScroll>
+        </div>
+      </section>
+
+      {/* Curated Shelf Rows */}
       {categories.map((category, catIndex) => (
-        <section
-          key={category.name}
-          className="books-category"
-          style={{
-            backgroundColor:
-              catIndex % 2 === 0
-                ? 'var(--color-soft-cloud)'
-                : 'var(--color-canvas)',
-          }}
-        >
+        <section key={category.name} className="books-shelf-section">
           <div className="section-container">
             <RevealOnScroll>
-              <p className="label" style={{ marginBottom: 'var(--space-xl)' }}>
-                {category.name}
-              </p>
+              <p className="label books-shelf-label">{category.name}</p>
             </RevealOnScroll>
-            <div className="library-shelf">
+
+            {/* First category = wrapping grid, rest = scroll rail */}
+            <div
+              className={
+                catIndex === 0 ? 'books-shelf-grid' : 'library-shelf'
+              }
+            >
               {category.books.map((book, i) => (
                 <RevealOnScroll
                   key={book.isbn}
@@ -263,17 +273,15 @@ export default function BooksPage() {
                 </RevealOnScroll>
               ))}
             </div>
+
+            {/* Shelf edge — physical surface under books */}
+            <div className="books-shelf-edge" aria-hidden="true" />
           </div>
         </section>
       ))}
 
       {/* Minimal footer */}
-      <footer
-        style={{
-          borderTop: '1px solid var(--color-hairline)',
-          padding: 'var(--space-xl) 0',
-        }}
-      >
+      <footer className="books-footer">
         <div
           className="section-container"
           style={{
