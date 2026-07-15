@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -13,11 +14,12 @@ import Hackathons from './components/Hackathons';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import BooksPage from './components/BooksPage';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
 
-export default function App() {
+function HomePage() {
   useEffect(() => {
     // Refresh ScrollTrigger after all content loaded
     ScrollTrigger.refresh();
@@ -25,8 +27,6 @@ export default function App() {
 
   return (
     <>
-      <CustomCursor />
-      <ScrollProgress />
       <Navbar />
       <main>
         <Hero />
@@ -38,6 +38,19 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <>
+      <CustomCursor />
+      <ScrollProgress />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/books" element={<BooksPage />} />
+      </Routes>
     </>
   );
 }

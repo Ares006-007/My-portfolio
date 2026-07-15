@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import RevealOnScroll from './RevealOnScroll';
 
 const books = [
@@ -127,6 +128,19 @@ export default function Library() {
 
         {/* Shelf edge — subtle physical surface line */}
         <div className="library-shelf-edge" aria-hidden="true" />
+
+        {/* Show more link */}
+        <RevealOnScroll>
+          <div className="library-show-more">
+            <Link
+              to="/books"
+              className="caption-md"
+              data-cursor="link"
+            >
+              See the full library →
+            </Link>
+          </div>
+        </RevealOnScroll>
       </div>
     </section>
   );
