@@ -720,6 +720,148 @@ body {
 }
 
 /* ═══════════════════════════════════════════
+   WORK-IN-PROGRESS BANNER — Construction Tape
+   ═══════════════════════════════════════════ */
+
+.wip-banner-wrapper {
+  position: absolute;
+  top: 80px;
+  left: -20px;
+  right: -20px;
+  z-index: 15;
+  transform: rotate(-1.2deg);
+  pointer-events: none;
+}
+
+.wip-banner {
+  display: flex;
+  flex-direction: column;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.08),
+    0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* Diagonal hazard stripes — top & bottom edge */
+.wip-banner-stripe {
+  height: 6px;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    #111111,
+    #111111 8px,
+    #FFD60A 8px,
+    #FFD60A 16px
+  );
+  background-size: 22.63px 100%;
+  animation: slide-stripes 1s linear infinite;
+}
+
+@keyframes slide-stripes {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 22.63px 0;
+  }
+}
+
+/* Main banner body */
+.wip-banner-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 10px 24px;
+  background-color: #FFD60A;
+}
+
+.wip-banner-icon {
+  font-size: 14px;
+  line-height: 1;
+  opacity: 0.55;
+  flex-shrink: 0;
+}
+
+.wip-banner-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.wip-banner-headline {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #111111;
+  line-height: 1.3;
+}
+
+.wip-banner-sub {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 450;
+  letter-spacing: 0.02em;
+  color: rgba(17, 17, 17, 0.65);
+  line-height: 1.4;
+}
+
+/* ── Responsive adjustments ── */
+@media (max-width: 767px) {
+  .wip-banner-wrapper {
+    top: 68px;
+    transform: rotate(-1.5deg);
+  }
+
+  .wip-banner-content {
+    padding: 8px 16px;
+    gap: 10px;
+  }
+
+  .wip-banner-headline {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+  }
+
+  .wip-banner-sub {
+    font-size: 10px;
+  }
+
+  .wip-banner-icon {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wip-banner-wrapper {
+    top: 60px;
+    transform: rotate(-2deg);
+  }
+
+  .wip-banner-content {
+    gap: 8px;
+    padding: 7px 12px;
+  }
+
+  .wip-banner-icon {
+    display: none;
+  }
+
+  .wip-banner-headline {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+  }
+
+  .wip-banner-sub {
+    font-size: 9px;
+  }
+
+  .wip-banner-stripe {
+    height: 4px;
+  }
+}
+
+/* ═══════════════════════════════════════════
    FOCUS STYLES
    ═══════════════════════════════════════════ */
 :focus-visible {
