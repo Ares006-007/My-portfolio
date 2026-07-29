@@ -862,6 +862,252 @@ body {
 }
 
 /* ═══════════════════════════════════════════
+   MUSIC LIBRARY — Curated Vinyl Collection
+   ═══════════════════════════════════════════ */
+
+.music-shelf-section {
+  padding: var(--space-section) 0 0;
+}
+
+.music-shelf-label {
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  display: inline-block;
+}
+
+/* Tactile Vinyl Record Container */
+.library-record {
+  position: relative;
+  width: 160px;
+  margin-bottom: var(--space-lg);
+  cursor: pointer;
+  perspective: 800px;
+}
+
+/* Sleeve Card */
+.record-sleeve {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: var(--color-soft-cloud);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.06),
+    0 12px 24px -6px rgba(0, 0, 0, 0.12);
+  z-index: 5;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.record-sleeve img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.record-sleeve-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #222;
+  color: #fff;
+  text-align: center;
+  padding: var(--space-sm);
+}
+
+/* Sleek Vinyl Disc behind sleeve */
+.record-vinyl {
+  position: absolute;
+  top: 4%;
+  left: 4%;
+  width: 92%;
+  height: 92%;
+  border-radius: 50%;
+  /* Vinyl Grooves concentric pattern */
+  background: 
+    radial-gradient(circle at center, transparent 38%, rgba(255, 255, 255, 0.08) 38.5%, rgba(0,0,0,0.85) 39%),
+    repeating-radial-gradient(circle at center, #1b1b1b, #1b1b1b 1px, #111111 2px, #111111 4px, #222222 5px);
+  box-shadow: 
+    inset 0 0 12px rgba(0,0,0,0.8),
+    0 4px 12px rgba(0,0,0,0.25);
+  z-index: 2;
+  transform: translateX(0) rotate(0deg);
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* Shiny reflection sheen overlay */
+.record-vinyl::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: linear-gradient(
+    45deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.12) 45%,
+    rgba(255, 255, 255, 0.18) 50%,
+    rgba(255, 255, 255, 0.12) 55%,
+    transparent 60%
+  );
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* Vinyl Center Label */
+.record-label {
+  width: 32%;
+  height: 32%;
+  border-radius: 50%;
+  background-color: #ffd60a;
+  background-size: cover;
+  background-position: center;
+  border: 2px solid #111;
+  position: relative;
+  box-shadow: inset 0 0 4px rgba(0,0,0,0.6);
+}
+
+/* Center spindle hole */
+.record-label::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-canvas);
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.4);
+}
+
+/* Tactile 3D Hover Transition */
+.library-record:hover .record-sleeve {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.08),
+    0 20px 32px -8px rgba(0, 0, 0, 0.18);
+}
+
+.library-record:hover .record-vinyl {
+  transform: translateX(45%) rotate(180deg);
+}
+
+/* ── Sticky Bottom Playback Drawer ── */
+.player-drawer-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.player-drawer {
+  pointer-events: auto;
+  background-color: var(--color-canvas);
+  border-top: 1px solid var(--color-hairline);
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.08);
+  padding: 12px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.player-drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--color-hairline-soft);
+  margin-bottom: 8px;
+}
+
+.player-drawer-close {
+  background: none;
+  border: none;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-mute);
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: color 0.2s;
+}
+
+.player-drawer-close:hover {
+  color: var(--color-ink);
+}
+
+/* Featured Music Grid */
+.music-featured-grid {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: var(--space-section);
+  align-items: center;
+}
+
+.music-featured-cover {
+  width: 240px;
+  aspect-ratio: 1 / 1;
+}
+
+.music-featured-note {
+  border-left: 2px solid rgba(0, 0, 0, 0.12);
+  padding-left: var(--space-xl);
+}
+
+/* Mobile & Tablet Adjustments */
+@media (max-width: 1023px) {
+  .music-featured-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  .music-featured-cover {
+    margin: 0 auto;
+    width: 200px;
+  }
+}
+
+@media (max-width: 767px) {
+  .library-record {
+    width: 130px;
+  }
+
+  /* Reduce shift on mobile to prevent overflow */
+  .library-record:hover .record-vinyl {
+    transform: translateX(35%) rotate(180deg);
+  }
+}
+
+@media (max-width: 480px) {
+  .library-record {
+    width: 110px;
+  }
+  
+  .library-record:hover .record-vinyl {
+    transform: translateX(25%) rotate(90deg);
+  }
+}
+
+/* Disable slide and rotation for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .library-record:hover .record-sleeve {
+    transform: none !important;
+  }
+  .library-record:hover .record-vinyl {
+    transform: none !important;
+  }
+}
+
+/* ═══════════════════════════════════════════
    FOCUS STYLES
    ═══════════════════════════════════════════ */
 :focus-visible {
