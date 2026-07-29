@@ -54,8 +54,10 @@ export default function Navbar() {
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       style={{
         height: '56px',
-        backgroundColor: scrolled ? 'var(--color-canvas)' : 'transparent',
-        borderBottom: scrolled ? '1px solid var(--color-hairline-soft)' : 'none',
+        backgroundColor: scrolled ? 'rgba(235, 235, 238, 0.92)' : 'rgba(245, 245, 247, 0.85)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+        borderBottom: '1px solid var(--color-hairline-soft)',
       }}
     >
       <div className="section-container flex items-center justify-between h-full">
@@ -67,7 +69,7 @@ export default function Navbar() {
           style={{
             letterSpacing: '0.15em',
             textTransform: 'uppercase',
-            color: scrolled ? 'var(--color-ink)' : 'var(--color-on-primary)',
+            color: 'var(--color-ink)',
             textDecoration: 'none',
           }}
           data-cursor="link"
@@ -84,7 +86,7 @@ export default function Navbar() {
                 onClick={(e) => scrollTo(e, link.href)}
                 className="body-strong"
                 style={{
-                  color: scrolled ? 'var(--color-ink)' : 'var(--color-on-primary)',
+                  color: 'var(--color-ink)',
                   textDecoration: 'none',
                   position: 'relative',
                   paddingBottom: '4px',
@@ -102,7 +104,7 @@ export default function Navbar() {
                       left: 0,
                       right: 0,
                       height: '2px',
-                      backgroundColor: scrolled ? 'var(--color-ink)' : 'var(--color-on-primary)',
+                      backgroundColor: 'var(--color-ink)',
                     }}
                     transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                   />
@@ -117,7 +119,7 @@ export default function Navbar() {
           onClick={() => setIsOpen(!isOpen)}
           className="md:hidden caption-sm"
           style={{
-            color: scrolled ? 'var(--color-ink)' : 'var(--color-on-primary)',
+            color: 'var(--color-ink)',
             background: 'none',
             border: 'none',
             letterSpacing: '0.1em',
