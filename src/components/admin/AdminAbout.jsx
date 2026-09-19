@@ -64,6 +64,25 @@ export default function AdminAbout() {
         </p>
       </div>
 
+      <div className="admin-form-card" style={{ marginBottom: '24px' }}>
+        <div className="admin-form">
+          <div className="admin-form-group" style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div>
+              <label style={{ fontSize: '15px', color: 'var(--admin-ink)' }}>Under Construction Banner</label>
+              <p className="caption-sm" style={{ color: 'var(--admin-mute)', marginTop: '4px' }}>Show a "Portfolio Under Construction" banner on the homepage.</p>
+            </div>
+            <label className="admin-checkbox-label" style={{ cursor: 'pointer' }}>
+              <input
+                type="checkbox"
+                checked={config.isUnderConstruction || false}
+                onChange={(e) => setConfig({ ...config, isUnderConstruction: e.target.checked })}
+              />
+              <span className="caption-md">Enabled</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
       <div className="admin-form-card">
         <div className="admin-form">
           <div className="admin-form-row">

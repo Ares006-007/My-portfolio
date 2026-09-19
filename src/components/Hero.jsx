@@ -1,9 +1,16 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import AnimatedText from './AnimatedText';
 import Ballpit from './Ballpit';
 import ErrorBoundary from './ErrorBoundary';
+import { getSiteConfig } from '../data/portfolioStore';
 
 export default function Hero() {
+  const [config, setConfig] = useState(null);
+
+  useEffect(() => {
+    getSiteConfig().then(setConfig);
+  }, []);
   return (
     <section
       id="home"
@@ -30,25 +37,27 @@ export default function Hero() {
       </div>
 
       {/* ── Work-in-Progress Construction Banner ── */}
-      <motion.div
-        className="wip-banner-wrapper"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
-      >
-        <div className="wip-banner">
-          <div className="wip-banner-stripe" />
-          <div className="wip-banner-content">
-            <span className="wip-banner-icon" aria-hidden="true">⚠</span>
-            <div className="wip-banner-text">
-              <span className="wip-banner-headline">PORTFOLIO UNDER CONSTRUCTION</span>
-              <span className="wip-banner-sub">Still building this space — more projects, experiments &amp; updates coming soon.</span>
+      {config?.isUnderConstruction && (
+        <motion.div
+          className="wip-banner-wrapper"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
+        >
+          <div className="wip-banner">
+            <div className="wip-banner-stripe" />
+            <div className="wip-banner-content">
+              <span className="wip-banner-icon" aria-hidden="true">⚠</span>
+              <div className="wip-banner-text">
+                <span className="wip-banner-headline">PORTFOLIO UNDER CONSTRUCTION</span>
+                <span className="wip-banner-sub">Still building this space — more projects, experiments & updates coming soon.</span>
+              </div>
+              <span className="wip-banner-icon" aria-hidden="true">⚠</span>
             </div>
-            <span className="wip-banner-icon" aria-hidden="true">⚠</span>
+            <div className="wip-banner-stripe" />
           </div>
-          <div className="wip-banner-stripe" />
-        </div>
-      </motion.div>
+        </motion.div>
+      )}
 
       {/* Foreground Content */}
       <div className="section-container min-h-screen flex flex-col justify-between relative z-20 pointer-events-none"

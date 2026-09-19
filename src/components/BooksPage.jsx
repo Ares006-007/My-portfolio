@@ -1,66 +1,28 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import RevealOnScroll from './RevealOnScroll';
-
-const featuredBook = {
-  title: 'Sapiens',
-  author: 'Yuval Noah Harari',
-  isbn: '9780062316097',
-  note: 'A sweeping narrative that fundamentally changed how I think about human civilization, cooperation, and the stories we tell ourselves to build societies.',
-};
-
-const categories = [
-  {
-    name: 'Design & Craft',
-    books: [
-      { title: 'The Design of Everyday Things', author: 'Don Norman', isbn: '9780465050659' },
-      { title: "Don't Make Me Think", author: 'Steve Krug', isbn: '9780321965516' },
-      { title: 'Steal Like an Artist', author: 'Austin Kleon', isbn: '9780761169253' },
-      { title: 'The Shape of Design', author: 'Frank Chimero', isbn: '9780985472207' },
-      { title: 'Sprint', author: 'Jake Knapp', isbn: '9781501121746' },
-    ],
-  },
-  {
-    name: 'Science & Wonder',
-    books: [
-      { title: 'A Brief History of Time', author: 'Stephen Hawking', isbn: '9780553380163' },
-      { title: "Surely You're Joking, Mr. Feynman!", author: 'Richard Feynman', isbn: '9780393355628' },
-      { title: 'Cosmos', author: 'Carl Sagan', isbn: '9780345539434' },
-      { title: 'The Elegant Universe', author: 'Brian Greene', isbn: '9780393338102' },
-      { title: 'Astrophysics for People in a Hurry', author: 'Neil deGrasse Tyson', isbn: '9780393609394' },
-    ],
-  },
-  {
-    name: 'Mind & Strategy',
-    books: [
-      { title: 'Thinking, Fast and Slow', author: 'Daniel Kahneman', isbn: '9780374533557' },
-      { title: 'Atomic Habits', author: 'James Clear', isbn: '9780735211292' },
-      { title: 'Deep Work', author: 'Cal Newport', isbn: '9781455586691' },
-      { title: 'Range', author: 'David Epstein', isbn: '9780735214484' },
-      { title: 'Meditations', author: 'Marcus Aurelius', isbn: '9780140449334' },
-    ],
-  },
-  {
-    name: 'Building & Making',
-    books: [
-      { title: 'Zero to One', author: 'Peter Thiel', isbn: '9780804139298' },
-      { title: 'The Pragmatic Programmer', author: 'David Thomas & Andrew Hunt', isbn: '9780135957059' },
-      { title: 'The Lean Startup', author: 'Eric Ries', isbn: '9780307887894' },
-      { title: 'Shoe Dog', author: 'Phil Knight', isbn: '9781501135927' },
-      { title: 'Hackers & Painters', author: 'Paul Graham', isbn: '9781449389550' },
-    ],
-  },
-];
-
-const totalBooks =
-  categories.reduce((acc, cat) => acc + cat.books.length, 0) + 1;
+import { getCollection } from '../data/portfolioStore';
 
 export default function BooksPage() {
   const [failedCovers, setFailedCovers] = useState(new Set());
+  const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    getCollection('books').then(data => {
+      setBooks(data);
+      setLoading(false);
+    });
   }, []);
+
+  const totalBooks = books.length;
+  
+  // Use first book as featured, or a fallback
+  const featuredBook = books.length > 0 ? {
+    ...books[0],
+    note: 'A book from the library that continues to shape my perspective.',
+  } : null;
 
   const handleImageError = (isbn) => {
     setFailedCovers((prev) => new Set(prev).add(isbn));
@@ -230,55 +192,48 @@ export default function BooksPage() {
       </section>
 
       {/* Curated Shelf Rows */}
-      {categories.map((category, catIndex) => (
-        <section key={category.name} className="books-shelf-section">
-          <div className="section-container">
-            <RevealOnScroll>
-              <p className="label books-shelf-label">{category.name}</p>
-            </RevealOnScroll>
+      <section className="books-shelf-section">
+        <div className="section-container">
+          <RevealOnScroll>
+            <p className="label books-shelf-label">All Books</p>
+          </RevealOnScroll>
 
-            {/* First category = wrapping grid, rest = scroll rail */}
-            <div
-              className={
-                catIndex === 0 ? 'books-shelf-grid' : 'library-shelf'
-              }
-            >
-              {category.books.map((book, i) => (
-                <RevealOnScroll
-                  key={book.isbn}
-                  delay={i * 0.06}
-                  className="library-book-wrapper"
-                >
-                  <div className="library-book books-page-book">
-                    {renderCover(book)}
-                    <p
-                      className="caption-md"
-                      style={{
-                        color: 'var(--color-ink)',
-                        marginTop: 'var(--space-md)',
-                      }}
-                    >
-                      {book.title}
-                    </p>
-                    <p
-                      className="caption-sm"
-                      style={{
-                        color: 'var(--color-mute)',
-                        marginTop: 'var(--space-xxs)',
-                      }}
-                    >
-                      {book.author}
-                    </p>
-                  </div>
-                </RevealOnScroll>
-              ))}
-            </div>
-
-            {/* Shelf edge — physical surface under books */}
-            <div className="books-shelf-edge" aria-hidden="true" />
+          <div className="books-shelf-grid">
+            {books.map((book, i) => (
+              <RevealOnScroll
+                key={book.id || book.isbn}
+                delay={i * 0.06}
+                className="library-book-wrapper"
+              >
+                <div className="library-book books-page-book">
+                  {renderCover(book)}
+                  <p
+                    className="caption-md"
+                    style={{
+                      color: 'var(--color-ink)',
+                      marginTop: 'var(--space-md)',
+                    }}
+                  >
+                    {book.title}
+                  </p>
+                  <p
+                    className="caption-sm"
+                    style={{
+                      color: 'var(--color-mute)',
+                      marginTop: 'var(--space-xxs)',
+                    }}
+                  >
+                    {book.author}
+                  </p>
+                </div>
+              </RevealOnScroll>
+            ))}
           </div>
-        </section>
-      ))}
+
+          {/* Shelf edge — physical surface under books */}
+          <div className="books-shelf-edge" aria-hidden="true" />
+        </div>
+      </section>
 
       {/* Minimal footer */}
       <footer className="books-footer">

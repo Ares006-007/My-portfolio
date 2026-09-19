@@ -1,8 +1,9 @@
-import { useState, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import RevealOnScroll from './RevealOnScroll';
-import { fallbackCategories, buildEmbedUrl } from './SpotifyHelper';
+import { buildEmbedUrl } from './SpotifyHelper';
+import { getCollection } from '../data/portfolioStore';
 
 export default function MusicLibrary() {
   const [activeEmbedUrl, setActiveEmbedUrl] = useState(null);
@@ -10,9 +11,14 @@ export default function MusicLibrary() {
   const [activeTitle, setActiveTitle] = useState('');
   const [activeArtist, setActiveArtist] = useState('');
   const [embedError, setEmbedError] = useState(false);
+  const [homepageRecords, setHomepageRecords] = useState([]);
 
-  // Show a preview of 5 records from the static fallback on the homepage
-  const homepageRecords = fallbackCategories.flatMap(cat => cat.items).slice(0, 5);
+  useEffect(() => {
+    getCollection('library').then((data) => {
+      const records = data.flatMap(cat => cat.items || []).slice(0, 5);
+      setHomepageRecords(records);
+    });
+  }, []);
 
   const playTrack = useCallback((item) => {
     setEmbedError(false);

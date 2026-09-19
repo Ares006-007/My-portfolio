@@ -1,52 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import RevealOnScroll from './RevealOnScroll';
 
-const books = [
-  {
-    title: 'Atomic Habits',
-    author: 'James Clear',
-    isbn: '9780735211292',
-  },
-  {
-    title: 'Sapiens',
-    author: 'Yuval Noah Harari',
-    isbn: '9780062316097',
-  },
-  {
-    title: 'The Design of Everyday Things',
-    author: 'Don Norman',
-    isbn: '9780465050659',
-  },
-  {
-    title: 'Zero to One',
-    author: 'Peter Thiel',
-    isbn: '9780804139298',
-  },
-  {
-    title: "Surely You're Joking, Mr. Feynman!",
-    author: 'Richard Feynman',
-    isbn: '9780393355628',
-  },
-  {
-    title: 'Thinking, Fast and Slow',
-    author: 'Daniel Kahneman',
-    isbn: '9780374533557',
-  },
-  {
-    title: 'The Pragmatic Programmer',
-    author: 'David Thomas & Andrew Hunt',
-    isbn: '9780135957059',
-  },
-  {
-    title: 'A Brief History of Time',
-    author: 'Stephen Hawking',
-    isbn: '9780553380163',
-  },
-];
+import { getCollection } from '../data/portfolioStore';
 
 export default function Library() {
+  const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [failedCovers, setFailedCovers] = useState(new Set());
+
+  useEffect(() => {
+    getCollection('books').then((data) => {
+      setBooks(data);
+      setLoading(false);
+    });
+  }, []);
 
   const handleImageError = (isbn) => {
     setFailedCovers((prev) => new Set(prev).add(isbn));

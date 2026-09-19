@@ -12,6 +12,7 @@ import {
 } from './SpotifyHelper';
 import { loginToSpotify, getSpotifyToken, logoutFromSpotify } from '../utils/spotifyAuth';
 import { getPlaylist, getPlaylistTracks } from '../utils/spotifyApi';
+import { getCollection } from '../data/portfolioStore';
 
 const CLIENT_ID = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
 const REDIRECT_URI = `${window.location.origin}/callback`;
@@ -32,9 +33,14 @@ export default function MusicPage() {
   // Playlist-based categories: [{ name, items: [...tracks] }]
   const [playlistCategories, setPlaylistCategories] = useState([]);
   const [playlistFeatured, setPlaylistFeatured] = useState(null);
+  
+  // CMS Library
+  const [cmsLibrary, setCmsLibrary] = useState([]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    getCollection('library').then(setCmsLibrary);
+    
     if (isConnected) {
       loadPlaylistData();
     }
@@ -141,9 +147,15 @@ export default function MusicPage() {
   // Determine display data
   // ────────────────────────
   const isShowingRealData = isConnected && !isLoading && !error && playlistCategories.length > 0;
-  const displayCategories = isShowingRealData ? playlistCategories : fallbackCategories;
-  const displayFeatured = isShowingRealData ? (playlistFeatured || fallbackFeatured) : fallbackFeatured;
-  const totalRecords = displayCategories.reduce((acc, cat) => acc + cat.items.length, 0);
+  const displayCategories = isShowingRealData ? playlistCategories : (cmsLibrary.length > 0 ? cmsLibrary : fallbackCategories);
+  
+  let fallbackFeaturedData = fallbackFeatured;
+  if (cmsLibrary.length > 0 && cmsLibrary[0].items && cmsLibrary[0].items.length > 0) {
+    fallbackFeaturedData = cmsLibrary[0].items[0];
+  }
+  
+  const displayFeatured = isShowingRealData ? (playlistFeatured || fallbackFeaturedData) : fallbackFeaturedData;
+  const totalRecords = displayCategories.reduce((acc, cat) => acc + (cat.items ? cat.items.length : 0), 0);
 
   // ════════════════════════════════════════════════
   // RENDER

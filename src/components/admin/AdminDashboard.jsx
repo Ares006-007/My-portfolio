@@ -8,11 +8,15 @@ import AdminAchievements from './AdminAchievements';
 import AdminSkills from './AdminSkills';
 import AdminAbout from './AdminAbout';
 import AdminContact from './AdminContact';
+import AdminBooks from './AdminBooks';
+import AdminLibrary from './AdminLibrary';
 
 const sidebarItems = [
   { key: 'projects', label: 'Projects', icon: '◻' },
   { key: 'achievements', label: 'Achievements', icon: '◆' },
   { key: 'skills', label: 'Skills', icon: '⚙' },
+  { key: 'books', label: 'Books', icon: '📖' },
+  { key: 'library', label: 'Music', icon: '🎵' },
   { key: 'about', label: 'About', icon: '◉' },
   { key: 'contact', label: 'Contact', icon: '✉' },
 ];
@@ -21,6 +25,8 @@ const panels = {
   projects: AdminProjects,
   achievements: AdminAchievements,
   skills: AdminSkills,
+  books: AdminBooks,
+  library: AdminLibrary,
   about: AdminAbout,
   contact: AdminContact,
 };
