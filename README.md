@@ -1,16 +1,52 @@
-# React + Vite
+# Personal Portfolio & Built-in CMS
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A dynamic, brutalist-inspired personal portfolio website built for developers. This project goes beyond a static site by integrating a **custom Content Management System (CMS)** directly into the frontend, allowing for instant, seamless content updates without ever leaving the browser.
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **The Problem:** Static portfolios quickly fall out of date because editing source code to add a new project or update a bio is tedious.
+- **The Solution:** A fast, heavily animated React application backed by Firebase. An authenticated `/admin` dashboard allows the owner to perform full CRUD operations on their Projects, Hackathons, Skills, Books, and Music Library.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend**: React 19, Vite, React Router DOM
+- **Styling**: Vanilla CSS (CSS Variables for a strict design system) + Tailwind CSS (v4)
+- **Animations**: GSAP (GreenSock) & Framer Motion
+- **WebGL / 3D**: Three.js (Interactive hero physics simulation)
+- **Backend & Database**: Firebase Firestore & Firebase Auth
+- **Integrations**: Spotify Web API & OpenLibrary API
 
-## Expanding the Oxlint configuration
+## Documentation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+For a deep dive into how this project is architected and built, check the `/docs` folder:
+- [Architecture & System Design](./docs/ARCHITECTURE.md)
+- [Codebase Map](./docs/CODEBASE_MAP.md)
+- [Product & Features](./docs/product.md)
+- [Tech Stack & Local Setup](./docs/tech.md)
+- [Data Models](./docs/data_models.md)
+- [Workflows](./docs/workflows.md)
+
+## Quick Start (Local Development)
+
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+2. **Environment Variables:**
+   Create a `.env` file in the root with your Firebase and Spotify credentials (see [tech.md](./docs/tech.md) for details).
+
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+4. **Deploy:**
+   Built and optimized for Firebase Hosting.
+   ```bash
+   npm run build
+   firebase deploy --only hosting
+   ```
+
+---
+*Designed with a focus on minimalism, precise typography, and rich micro-interactions.*
