@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const navLinks = [
   { label: 'About', href: '#about' },
   { label: 'Library', href: '#library' },
-  { label: 'Listening', href: '#music' },
   { label: 'Projects', href: '#projects' },
   { label: 'Events', href: '#hackathons' },
   { label: 'Skills', href: '#skills' },
   { label: 'Contact', href: '#contact' },
+  { label: 'Admin', href: '/admin', isRoute: true },
 ];
 
 export default function Navbar() {
@@ -36,8 +37,10 @@ export default function Navbar() {
     );
 
     navLinks.forEach((link) => {
-      const el = document.querySelector(link.href);
-      if (el) observer.observe(el);
+      if (!link.isRoute) {
+        const el = document.querySelector(link.href);
+        if (el) observer.observe(el);
+      }
     });
 
     return () => observer.disconnect();
@@ -82,35 +85,51 @@ export default function Navbar() {
         <ul className="hidden md:flex items-center" style={{ gap: 'var(--space-xxl)' }}>
           {navLinks.map((link) => (
             <li key={link.href}>
-              <a
-                href={link.href}
-                onClick={(e) => scrollTo(e, link.href)}
-                className="body-strong"
-                style={{
-                  color: 'var(--color-ink)',
-                  textDecoration: 'none',
-                  position: 'relative',
-                  paddingBottom: '4px',
-                }}
-                data-cursor="link"
-              >
-                {link.label}
-                {/* 2px active underline — the system's nav indicator */}
-                {activeSection === link.href && (
-                  <motion.div
-                    layoutId="navActiveIndicator"
-                    style={{
-                      position: 'absolute',
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      height: '2px',
-                      backgroundColor: 'var(--color-ink)',
-                    }}
-                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                  />
-                )}
-              </a>
+              {link.isRoute ? (
+                <Link
+                  to={link.href}
+                  className="body-strong"
+                  style={{
+                    color: 'var(--color-ink)',
+                    textDecoration: 'none',
+                    position: 'relative',
+                    paddingBottom: '4px',
+                  }}
+                  data-cursor="link"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  href={link.href}
+                  onClick={(e) => scrollTo(e, link.href)}
+                  className="body-strong"
+                  style={{
+                    color: 'var(--color-ink)',
+                    textDecoration: 'none',
+                    position: 'relative',
+                    paddingBottom: '4px',
+                  }}
+                  data-cursor="link"
+                >
+                  {link.label}
+                  {/* 2px active underline — the system's nav indicator */}
+                  {activeSection === link.href && (
+                    <motion.div
+                      layoutId="navActiveIndicator"
+                      style={{
+                        position: 'absolute',
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        height: '2px',
+                        backgroundColor: 'var(--color-ink)',
+                      }}
+                      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                    />
+                  )}
+                </a>
+              )}
             </li>
           ))}
         </ul>
@@ -162,23 +181,40 @@ export default function Navbar() {
                     borderBottom: '1px solid var(--color-hairline-soft)',
                   }}
                 >
-                  <a
-                    href={link.href}
-                    onClick={(e) => {
-                      scrollTo(e, link.href);
-                      setIsOpen(false);
-                    }}
-                    className="heading-lg"
-                    style={{
-                      color: 'var(--color-ink)',
-                      textDecoration: 'none',
-                      display: 'block',
-                      padding: 'var(--space-xl) 0',
-                    }}
-                    data-cursor="link"
-                  >
-                    {link.label}
-                  </a>
+                  {link.isRoute ? (
+                    <Link
+                      to={link.href}
+                      onClick={() => setIsOpen(false)}
+                      className="heading-lg"
+                      style={{
+                        color: 'var(--color-ink)',
+                        textDecoration: 'none',
+                        display: 'block',
+                        padding: 'var(--space-xl) 0',
+                      }}
+                      data-cursor="link"
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={link.href}
+                      onClick={(e) => {
+                        scrollTo(e, link.href);
+                        setIsOpen(false);
+                      }}
+                      className="heading-lg"
+                      style={{
+                        color: 'var(--color-ink)',
+                        textDecoration: 'none',
+                        display: 'block',
+                        padding: 'var(--space-xl) 0',
+                      }}
+                      data-cursor="link"
+                    >
+                      {link.label}
+                    </a>
+                  )}
                 </motion.li>
               ))}
             </ul>

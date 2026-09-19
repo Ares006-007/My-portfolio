@@ -1,53 +1,24 @@
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import RevealOnScroll from './RevealOnScroll';
-
-const events = [
-  {
-    name: 'Meta OpenEnv Hackathon',
-    role: 'Competed',
-    date: '2026',
-    description:
-      'Top 800 out of 30,000. Qualified for the in-person round.',
-  },
-  {
-    name: 'Code Day 2026 v1',
-    role: 'Organized',
-    date: '2026',
-    description:
-      'Organized the first edition of Code Day from the ground up.',
-  },
-  {
-    name: 'Daydream Bengaluru',
-    role: 'Organized',
-    description:
-      'Organized and produced Daydream Bengaluru.',
-  },
-  {
-    name: 'Campfire Bengaluru',
-    role: 'Organized',
-    description:
-      'Organized and produced Campfire Bengaluru.',
-  },
-  {
-    name: 'Comic Con India',
-    role: 'Volunteered',
-    description:
-      'Managed panelists, requirements, and stage setup on the Panel Stage team.',
-  },
-  {
-    name: 'BookMyShow — Def Leppard Bengaluru',
-    role: 'Production',
-    description:
-      'Managed concert stalls for the Def Leppard Bengaluru show.',
-  },
-  {
-    name: 'BookMyShow — OG Tour Thaman Bengaluru',
-    role: 'Production',
-    description:
-      'Ran box office operations for the Thaman Bengaluru concert.',
-  },
-];
+import { getCollection } from '../data/portfolioStore';
 
 export default function Hackathons() {
+  const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getCollection('achievements')
+      .then((data) => {
+        setEvents(data);
+        setLoading(false);
+      })
+      .catch(() => {
+        setEvents([]);
+        setLoading(false);
+      });
+  }, []);
+
   return (
     <section
       id="hackathons"
@@ -62,69 +33,99 @@ export default function Hackathons() {
           </h2>
         </RevealOnScroll>
 
-        {/* Event list — flat rows with hairline dividers */}
-        <div>
-          {events.map((event, i) => (
-            <RevealOnScroll key={event.name} delay={i * 0.08}>
-              <div
-                style={{
-                  borderTop: '1px solid var(--color-hairline)',
-                  padding: 'var(--space-xl) 0',
-                }}
-              >
-                <div className="grid md:grid-cols-12" style={{ gap: 'var(--space-xl)' }}>
-                  {/* Date column */}
-                  <div className="md:col-span-3">
-                    <span
-                      className="caption-md"
-                      style={{ color: 'var(--color-mute)' }}
-                    >
-                      {event.date || '—'}
-                    </span>
-                  </div>
+        {loading ? (
+          <div style={{ textAlign: 'center', padding: 'var(--space-section) 0' }}>
+            <p className="body-md" style={{ color: 'var(--color-mute)' }}>Loading events…</p>
+          </div>
+        ) : events.length === 0 ? (
+          /* Placeholder when no events */
+          <RevealOnScroll>
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+              style={{ maxWidth: '480px', borderRadius: 'var(--radius-none)' }}
+            >
+              <div style={{ padding: 'var(--space-md) 0' }}>
+                <p className="caption-md" style={{ color: 'var(--color-mute)', marginBottom: 'var(--space-xs)' }}>
+                  Coming Soon
+                </p>
+                <h3 className="body-strong" style={{ marginBottom: 'var(--space-sm)' }}>
+                  Events details coming soon.
+                </h3>
+                <p className="body-md" style={{ color: 'var(--color-mute)', fontSize: '14px' }}>
+                  Currently organizing and documenting events for this section.
+                </p>
+              </div>
+            </motion.div>
+          </RevealOnScroll>
+        ) : (
+          /* Event list — flat rows with hairline dividers */
+          <div>
+            {events.map((event, i) => (
+              <RevealOnScroll key={event.id || event.name} delay={i * 0.08}>
+                <div
+                  style={{
+                    borderTop: '1px solid var(--color-hairline)',
+                    padding: 'var(--space-xl) 0',
+                  }}
+                >
+                  <div className="grid md:grid-cols-12" style={{ gap: 'var(--space-xl)' }}>
+                    {/* Date column */}
+                    <div className="md:col-span-3">
+                      <span
+                        className="caption-md"
+                        style={{ color: 'var(--color-mute)' }}
+                      >
+                        {event.date || '—'}
+                      </span>
+                    </div>
 
-                  {/* Content column */}
-                  <div className="md:col-span-9">
-                    <h3 className="body-strong" style={{ marginBottom: 'var(--space-sm)' }}>
-                      {event.name}
-                    </h3>
+                    {/* Content column */}
+                    <div className="md:col-span-9">
+                      <h3 className="body-strong" style={{ marginBottom: 'var(--space-sm)' }}>
+                        {event.name}
+                      </h3>
 
-                    {/* Role badge — pill */}
-                    <span
-                      className="caption-sm"
-                      style={{
-                        display: 'inline-block',
-                        backgroundColor: event.role === 'Organized' ? 'var(--color-ink)' : 'var(--color-canvas)',
-                        color: event.role === 'Organized' ? 'var(--color-on-primary)' : 'var(--color-ink)',
-                        padding: '4px 12px',
-                        borderRadius: 'var(--radius-pill)',
-                        border: event.role === 'Organized' ? 'none' : '1px solid var(--color-hairline)',
-                        marginBottom: 'var(--space-sm)',
-                      }}
-                    >
-                      {event.role}
-                    </span>
+                      {/* Role badge — pill */}
+                      {event.role && (
+                        <span
+                          className="caption-sm"
+                          style={{
+                            display: 'inline-block',
+                            backgroundColor: event.role === 'Organized' ? 'var(--color-ink)' : 'var(--color-canvas)',
+                            color: event.role === 'Organized' ? 'var(--color-on-primary)' : 'var(--color-ink)',
+                            padding: '4px 12px',
+                            borderRadius: 'var(--radius-pill)',
+                            border: event.role === 'Organized' ? 'none' : '1px solid var(--color-hairline)',
+                            marginBottom: 'var(--space-sm)',
+                          }}
+                        >
+                          {event.role}
+                        </span>
+                      )}
 
-                    <p
-                      className="body-md"
-                      style={{
-                        color: 'var(--color-mute)',
-                        maxWidth: '56ch',
-                        fontSize: '14px',
-                      }}
-                    >
-                      {event.description}
-                    </p>
+                      <p
+                        className="body-md"
+                        style={{
+                          color: 'var(--color-mute)',
+                          maxWidth: '56ch',
+                          fontSize: '14px',
+                        }}
+                      >
+                        {event.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </RevealOnScroll>
-          ))}
-          {/* Bottom hairline */}
-          <hr className="divider" />
-        </div>
+              </RevealOnScroll>
+            ))}
+            {/* Bottom hairline */}
+            <hr className="divider" />
+          </div>
+        )}
       </div>
     </section>
   );
 }
-

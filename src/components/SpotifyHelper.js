@@ -1,41 +1,61 @@
-// Spotify Helper Utility for Music Library
-// Handles fetching dynamic details via Spotify's public OEmbed API with offline/fallback database.
+// Spotify Helper — Source of truth for the Listening Archive
+// ═══════════════════════════════════════════════════════════
+// The CURATED_PLAYLISTS array defines EXACTLY which playlists appear in the archive.
+// Only tracks from these playlists are shown when connected to Spotify.
 
-export const musicCategories = [
+/**
+ * Your hand-picked playlists. Each entry becomes a shelf section in the archive.
+ * To add/remove a playlist, just edit this array.
+ *
+ * Format: { id: 'spotifyPlaylistId', label: 'Optional custom shelf name' }
+ * If `label` is omitted, the playlist's real Spotify name is used.
+ */
+export const CURATED_PLAYLISTS = [
+  { id: '1tbidmY7uir4qvgqeFAzDu' },
+  { id: '463c2b6LwVFHVVlyyWo7Ut' },
+  { id: '37i9dQZF1EpjQYGsIGBOt2' },
+];
+
+// ═══════════════════════════════════════════════════════════
+// STATIC FALLBACK — shown when the user is NOT connected to Spotify.
+// These are manually curated records with verified Spotify album IDs.
+// ═══════════════════════════════════════════════════════════
+
+export const fallbackCategories = [
   {
     name: 'Late Night Code',
     items: [
       {
-        id: 'daft-punk-ram',
+        id: '4m2880jivSbbyEGAKfITCa',
+        type: 'album',
         title: 'Random Access Memories',
         artist: 'Daft Punk',
-        spotifyUrl: 'https://open.spotify.com/album/4m2860ZgZY2x2eCMPY2j4H',
-        coverUrl: 'https://i.scdn.co/image/ab67616d0000b273b5f90382b6b063855e971a81',
-        embedUrl: 'https://open.spotify.com/embed/album/4m2860ZgZY2x2eCMPY2j4H',
+        spotifyUrl: 'https://open.spotify.com/album/4m2880jivSbbyEGAKfITCa',
+        coverUrl: 'https://upload.wikimedia.org/wikipedia/en/a/a7/Random_Access_Memories.jpg',
       },
       {
-        id: 'aphex-twin-saw',
+        id: '7aNclGRxTysfh6z0d8671k',
+        type: 'album',
         title: 'Selected Ambient Works 85-92',
         artist: 'Aphex Twin',
-        spotifyUrl: 'https://open.spotify.com/album/7kQzPskFvRrc3727V7zF36',
-        coverUrl: 'https://i.scdn.co/image/ab67616d0000b273af6cb85d8520bf214bf39e6a',
-        embedUrl: 'https://open.spotify.com/embed/album/7kQzPskFvRrc3727V7zF36',
+        spotifyUrl: 'https://open.spotify.com/album/7aNclGRxTysfh6z0d8671k',
+        coverUrl: 'https://upload.wikimedia.org/wikipedia/en/c/cc/Selected_Ambient_Works_85-92.png',
       },
       {
-        id: 'massive-attack-mezz',
+        id: '49MNmJhZQewjt06rpwp6QR',
+        type: 'album',
         title: 'Mezzanine',
         artist: 'Massive Attack',
-        spotifyUrl: 'https://open.spotify.com/album/4986nfoVmqtdH422GZ1w8P',
-        coverUrl: 'https://i.scdn.co/image/ab67616d0000b273e8e19af3a0058ec18e7e17af',
-        embedUrl: 'https://open.spotify.com/embed/album/4986nfoVmqtdH422GZ1w8P',
+        spotifyUrl: 'https://open.spotify.com/album/49MNmJhZQewjt06rpwp6QR',
+        coverUrl: 'https://upload.wikimedia.org/wikipedia/en/e/e9/Massive_Attack_-_Mezzanine.png',
       },
       {
-        id: 'kraftwerk-cw',
+        id: '42hCHiMtfs7mfBTVX3V6k7',
+        type: 'album',
         title: 'Computer World',
         artist: 'Kraftwerk',
-        spotifyUrl: 'https://open.spotify.com/album/1M377gZcW2n6Zt5Lg4Cg29',
-        coverUrl: 'https://i.scdn.co/image/ab67616d0000b273d44dbd53c7c2518e1d5a7114',
-        embedUrl: 'https://open.spotify.com/embed/album/1M377gZcW2n6Zt5Lg4Cg29',
+        spotifyUrl: 'https://open.spotify.com/album/42hCHiMtfs7mfBTVX3V6k7',
+        coverUrl: 'https://upload.wikimedia.org/wikipedia/en/a/a6/Kraftwerk_-_Computer_World.png',
       },
     ],
   },
@@ -43,36 +63,36 @@ export const musicCategories = [
     name: 'Ambient & Focus',
     items: [
       {
-        id: 'tycho-dive',
+        id: '4CBUbnGFz2iKFJjYqRIwst',
+        type: 'album',
         title: 'Dive',
         artist: 'Tycho',
-        spotifyUrl: 'https://open.spotify.com/album/432N5v5zYwpxw6e1Bw59nZ',
-        coverUrl: 'https://i.scdn.co/image/ab67616d0000b273c55de7fb1be7a87e5b225af6',
-        embedUrl: 'https://open.spotify.com/embed/album/432N5v5zYwpxw6e1Bw59nZ',
+        spotifyUrl: 'https://open.spotify.com/album/4CBUbnGFz2iKFJjYqRIwst',
+        coverUrl: 'https://upload.wikimedia.org/wikipedia/en/1/1b/Tycho_-_Dive.png',
       },
       {
-        id: 'brian-eno-airports',
+        id: '063f8Ej8rLVTz9KkjQKEMa',
+        type: 'album',
         title: 'Ambient 1: Music for Airports',
         artist: 'Brian Eno',
-        spotifyUrl: 'https://open.spotify.com/album/063f8Ej8rLVTz9Kkj4J16d',
-        coverUrl: 'https://i.scdn.co/image/ab67616d0000b2737a28e8334468f7b7cb1d770c',
-        embedUrl: 'https://open.spotify.com/embed/album/063f8Ej8rLVTz9Kkj4J16d',
+        spotifyUrl: 'https://open.spotify.com/album/063f8Ej8rLVTz9KkjQKEMa',
+        coverUrl: 'https://upload.wikimedia.org/wikipedia/en/9/91/Eno_ambient1_music_for_airports.jpg',
       },
       {
-        id: 'nils-frahm-spaces',
+        id: '0DFbQjp468sMiIMTrZdr5w',
+        type: 'album',
         title: 'Spaces',
         artist: 'Nils Frahm',
-        spotifyUrl: 'https://open.spotify.com/album/6K5eS8Vrc4TfG5P6gYt8xW',
-        coverUrl: 'https://i.scdn.co/image/ab67616d0000b273cdb6189ef0cbcf8325a7fde9',
-        embedUrl: 'https://open.spotify.com/embed/album/6K5eS8Vrc4TfG5P6gYt8xW',
+        spotifyUrl: 'https://open.spotify.com/album/0DFbQjp468sMiIMTrZdr5w',
+        coverUrl: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500&q=80',
       },
       {
-        id: 'boards-of-canada-music',
+        id: '6LZiNXaDvhzvnXUubVOmNU',
+        type: 'album',
         title: 'Music Has the Right to Children',
         artist: 'Boards of Canada',
-        spotifyUrl: 'https://open.spotify.com/album/1snN1axdsqXn7ut4pH255H',
-        coverUrl: 'https://i.scdn.co/image/ab67616d0000b273f3c4fb6e36d4df6c54326505',
-        embedUrl: 'https://open.spotify.com/embed/album/1snN1axdsqXn7ut4pH255H',
+        spotifyUrl: 'https://open.spotify.com/album/6LZiNXaDvhzvnXUubVOmNU',
+        coverUrl: 'https://upload.wikimedia.org/wikipedia/en/a/a2/BoardsofCanadaMusicHasTheRightToChildren.jpg',
       },
     ],
   },
@@ -80,76 +100,87 @@ export const musicCategories = [
     name: 'High Energy & Rhythm',
     items: [
       {
-        id: 'justice-cross',
+        id: '4GGazqHvuKwxBjWLFaJkDL',
+        type: 'album',
         title: '† (Cross)',
         artist: 'Justice',
-        spotifyUrl: 'https://open.spotify.com/album/0t5H3kC8O4Jv3VpxT8L2L4',
-        coverUrl: 'https://i.scdn.co/image/ab67616d0000b273d42ee0c965c71bfa98e945c2',
-        embedUrl: 'https://open.spotify.com/embed/album/0t5H3kC8O4Jv3VpxT8L2L4',
+        spotifyUrl: 'https://open.spotify.com/album/4GGazqHvuKwxBjWLFaJkDL',
+        coverUrl: 'https://upload.wikimedia.org/wikipedia/en/7/7b/Justice_cross.jpg',
       },
       {
-        id: 'disclosure-settle',
+        id: '2t3u8VvQ2iG678P2Q0T74p',
+        type: 'album',
         title: 'Settle',
         artist: 'Disclosure',
-        spotifyUrl: 'https://open.spotify.com/album/4X1c1e5gX5rX6z3Bv1bL6O',
-        coverUrl: 'https://i.scdn.co/image/ab67616d0000b273412704ebf94c483b879c3d42',
-        embedUrl: 'https://open.spotify.com/embed/album/4X1c1e5gX5rX6z3Bv1bL6O',
+        spotifyUrl: 'https://open.spotify.com/album/2t3u8VvQ2iG678P2Q0T74p',
+        coverUrl: 'https://upload.wikimedia.org/wikipedia/en/7/76/Disclosure_-_Settle.png',
       },
       {
-        id: 'chem-bros-dig',
+        id: '3IexJ42i686v59cQ47e4Wd',
+        type: 'album',
         title: 'Dig Your Own Hole',
         artist: 'The Chemical Brothers',
-        spotifyUrl: 'https://open.spotify.com/album/4eP6S3mCgKz20N5K4bW8rG',
-        coverUrl: 'https://i.scdn.co/image/ab67616d0000b2735f606e987c06fa2bf39dcff8',
-        embedUrl: 'https://open.spotify.com/embed/album/4eP6S3mCgKz20N5K4bW8rG',
+        spotifyUrl: 'https://open.spotify.com/album/3IexJ42i686v59cQ47e4Wd',
+        coverUrl: 'https://upload.wikimedia.org/wikipedia/en/a/ab/Digyourownhole.jpg',
       },
     ],
   },
 ];
 
-export const featuredTrack = {
-  id: 'tame-impala-currents',
+export const fallbackFeatured = {
+  id: '79dL7FLiJFOO0EoehUHQBv',
+  type: 'album',
   title: 'Currents',
   artist: 'Tame Impala',
-  spotifyUrl: 'https://open.spotify.com/album/79OZ09q6VdYrJ9fv07lZ46',
-  coverUrl: 'https://i.scdn.co/image/ab67616d0000b2739e1c1ca1b20c6c124fc6612b',
-  embedUrl: 'https://open.spotify.com/embed/album/79OZ09q6VdYrJ9fv07lZ46',
+  spotifyUrl: 'https://open.spotify.com/album/79dL7FLiJFOO0EoehUHQBv',
+  coverUrl: 'https://upload.wikimedia.org/wikipedia/en/9/9b/Tame_Impala_-_Currents.png',
   note: 'A benchmark in modern psychedelic pop and sound engineering. The lush synthesis, sweeping filters, and impeccable rhythm sections in Currents serve as the ultimate sonic backdrop for long, focused programming sessions.',
 };
 
-// Simple oEmbed Client Cache
-const oembedCache = {};
+/**
+ * Normalizes a Spotify playlist track item into the standard record schema.
+ * Filters out null tracks (local files, unavailable, etc.)
+ */
+export function normalizePlaylistTrack(item) {
+  const track = item.track;
+  if (!track || !track.id) return null; // Skip local files or unavailable tracks
 
-export async function fetchSpotifyOEmbed(url) {
-  if (oembedCache[url]) {
-    return oembedCache[url];
-  }
+  return {
+    id: track.id,
+    type: 'track',
+    title: track.name,
+    artist: track.artists.map(a => a.name).join(', '),
+    album: track.album?.name || '',
+    coverUrl: track.album?.images?.[0]?.url || '',
+    spotifyUrl: track.external_urls?.spotify || `https://open.spotify.com/track/${track.id}`,
+  };
+}
 
-  // Try to load from session storage cache
-  try {
-    const cached = sessionStorage.getItem(`spotify-oembed:${url}`);
-    if (cached) {
-      oembedCache[url] = JSON.parse(cached);
-      return oembedCache[url];
+/**
+ * Deduplicates tracks by ID, keeping the first occurrence.
+ */
+export function deduplicateTracks(tracks) {
+  const seen = new Set();
+  return tracks.filter(t => {
+    if (seen.has(t.id)) return false;
+    seen.add(t.id);
+    return true;
+  });
+}
+
+/**
+ * Builds a verified Spotify embed URL from an item's type and Spotify URL.
+ */
+export function buildEmbedUrl(item) {
+  if (item.spotifyUrl) {
+    const match = item.spotifyUrl.match(/open\.spotify\.com\/(track|album|playlist|episode)\/([a-zA-Z0-9]+)/);
+    if (match) {
+      const [, contentType, contentId] = match;
+      return `https://open.spotify.com/embed/${contentType}/${contentId}`;
     }
-  } catch (e) {
-    // Session storage not available
   }
-
-  try {
-    const response = await fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(url)}`);
-    if (!response.ok) throw new Error('Failed to fetch Spotify OEmbed');
-    const data = await response.json();
-    
-    // Store in cache
-    oembedCache[url] = data;
-    try {
-      sessionStorage.setItem(`spotify-oembed:${url}`, JSON.stringify(data));
-    } catch (e) {}
-
-    return data;
-  } catch (err) {
-    console.warn('Spotify OEmbed fetch failed, using local fallback:', err);
-    return null;
+  if (item.type && item.id) {
+    return `https://open.spotify.com/embed/${item.type}/${item.id}`;
   }
+  return null;
 }

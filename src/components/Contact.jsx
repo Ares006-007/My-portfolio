@@ -1,16 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import RevealOnScroll from './RevealOnScroll';
 import AnimatedText from './AnimatedText';
-
-const socialLinks = [
-  { label: 'GitHub', href: 'https://github.com' },
-  { label: 'LinkedIn', href: 'https://linkedin.com' },
-  { label: 'X / Twitter', href: 'https://x.com' },
-];
+import { getSiteConfig } from '../data/portfolioStore';
 
 export default function Contact() {
+  const [contact, setContact] = useState({});
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    getSiteConfig()
+      .then((config) => {
+        if (config?.contact) setContact(config.contact);
+      })
+      .catch(() => {});
+  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -117,19 +121,19 @@ export default function Contact() {
               <div>
                 <p className="body-strong" style={{ marginBottom: 'var(--space-sm)' }}>Email</p>
                 <a
-                  href="mailto:hello@example.com"
+                  href={`mailto:${contact.email}`}
                   className="body-md"
                   style={{ color: 'var(--color-mute)', textDecoration: 'none' }}
                   data-cursor="link"
                 >
-                  hello@example.com
+                  {contact.email}
                 </a>
               </div>
 
               <div style={{ marginTop: 'var(--space-section)' }}>
                 <p className="body-strong" style={{ marginBottom: 'var(--space-sm)' }}>Elsewhere</p>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)', flexWrap: 'wrap' }}>
-                  {socialLinks.map((link, i) => (
+                  {(contact.socialLinks || []).map((link, i) => (
                     <span key={link.label} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
                       <a
                         href={link.href}
@@ -141,7 +145,7 @@ export default function Contact() {
                       >
                         {link.label}
                       </a>
-                      {i < socialLinks.length - 1 && (
+                      {i < (contact.socialLinks || []).length - 1 && (
                         <span className="body-md" style={{ color: 'var(--color-hairline)' }}>/</span>
                       )}
                     </span>

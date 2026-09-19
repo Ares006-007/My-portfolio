@@ -10,7 +10,7 @@ import { motion, useReducedMotion } from 'framer-motion';
  * @param {'load' | 'scroll'} trigger - Animate on load or scroll into view
  */
 export default function AnimatedText({
-  text,
+  text = '',
   className = '',
   el: Element = 'p',
   delay = 0,

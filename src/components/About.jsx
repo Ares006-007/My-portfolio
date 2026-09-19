@@ -1,13 +1,19 @@
+import { useState, useEffect } from 'react';
 import AnimatedText from './AnimatedText';
 import RevealOnScroll from './RevealOnScroll';
-
-const stats = [
-  { number: '18', label: 'Years old' },
-  { number: '6+', label: 'Events produced' },
-  { number: 'Top 800', label: 'Out of 30,000 at Meta OpenEnv' },
-];
+import { getSiteConfig } from '../data/portfolioStore';
 
 export default function About() {
+  const [about, setAbout] = useState({});
+
+  useEffect(() => {
+    getSiteConfig()
+      .then((config) => {
+        if (config?.about) setAbout(config.about);
+      })
+      .catch(() => {});
+  }, []);
+
   return (
     <section
       id="about"
@@ -19,7 +25,7 @@ export default function About() {
         <RevealOnScroll>
           <div style={{ marginBottom: 'var(--space-xl)' }}>
             <AnimatedText
-              text="I Build Things"
+              text={about.headline1}
               className="display-campaign"
               style={{
                 color: 'var(--color-ink)',
@@ -27,7 +33,7 @@ export default function About() {
               }}
             />
             <AnimatedText
-              text="That Matter"
+              text={about.headline2}
               className="display-campaign"
               style={{
                 color: 'var(--color-charcoal)',
@@ -47,7 +53,7 @@ export default function About() {
               </h2>
             </RevealOnScroll>
             <AnimatedText
-              text="I organize mass-scale tech events, compete in international hackathons, and mentor teenagers in astrophysics — then come home and write code."
+              text={about.bio}
               className="body-md"
               style={{ marginBottom: 'var(--space-xl)', maxWidth: '52ch', color: 'var(--color-ink)' }}
             />
@@ -59,10 +65,7 @@ export default function About() {
                   maxWidth: '52ch',
                 }}
               >
-                My work spans event production for audiences of thousands, stage management
-                at Comic Con and BookMyShow concerts, a top-800 finish at Meta's OpenEnv
-                Hackathon, and a youth STEM mentorship program where I taught rocket science,
-                black holes, and the Big Bang theory.
+                {about.extendedBio}
               </p>
             </RevealOnScroll>
           </div>
@@ -76,13 +79,13 @@ export default function About() {
                 padding: 'var(--space-xl)',
               }}
             >
-              {stats.map((stat, i) => (
+              {(about.stats || []).map((stat, i) => (
                 <RevealOnScroll key={stat.label} delay={i * 0.08} direction="right">
                   <div
                     style={{
                       borderTop: i > 0 ? '1px solid var(--color-hairline)' : 'none',
                       paddingTop: i > 0 ? 'var(--space-xl)' : '0',
-                      paddingBottom: i < stats.length - 1 ? 'var(--space-xl)' : '0',
+                      paddingBottom: i < (about.stats || []).length - 1 ? 'var(--space-xl)' : '0',
                     }}
                   >
                     <p className="heading-lg" style={{ color: 'var(--color-ink)' }}>
@@ -104,4 +107,3 @@ export default function About() {
     </section>
   );
 }
-
