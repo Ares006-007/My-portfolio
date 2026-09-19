@@ -9,6 +9,7 @@ const emptyAchievement = {
   role: 'Competed',
   date: '',
   description: '',
+  coverUrl: '',
 };
 
 export default function AdminAchievements() {
@@ -41,6 +42,7 @@ export default function AdminAchievements() {
       role: item.role || 'Competed',
       date: item.date || '',
       description: item.description || '',
+      coverUrl: item.coverUrl || '',
     });
     setModalOpen(true);
   };
@@ -192,6 +194,18 @@ export default function AdminAchievements() {
                     onChange={(e) => setForm({ ...form, description: e.target.value })}
                     placeholder="Brief description"
                   />
+                </div>
+                <div className="admin-form-group">
+                  <label>Cover Photo URL (optional)</label>
+                  <input
+                    type="text"
+                    value={form.coverUrl || ''}
+                    onChange={(e) => setForm({ ...form, coverUrl: e.target.value })}
+                    placeholder="https://..."
+                  />
+                  <p className="caption-sm" style={{ color: 'var(--admin-mute)', marginTop: '4px' }}>
+                    Used for the background image in the Hackathons section.
+                  </p>
                 </div>
                 <div className="admin-form-actions">
                   <button type="button" onClick={() => setModalOpen(false)} className="admin-btn-secondary">

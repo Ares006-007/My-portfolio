@@ -112,10 +112,34 @@ export default function Hackathons() {
                           color: 'var(--color-mute)',
                           maxWidth: '56ch',
                           fontSize: '14px',
+                          marginBottom: event.coverUrl ? 'var(--space-md)' : 0,
                         }}
                       >
                         {event.description}
                       </p>
+
+                      {/* Cover Photo */}
+                      {event.coverUrl && (
+                        <div style={{
+                          marginTop: 'var(--space-md)',
+                          borderRadius: '8px',
+                          overflow: 'hidden',
+                          width: '100%',
+                          maxWidth: '600px'
+                        }}>
+                          <img
+                            src={event.coverUrl}
+                            alt={`${event.name} cover`}
+                            loading="lazy"
+                            style={{
+                              width: '100%',
+                              height: 'auto',
+                              objectFit: 'cover',
+                              display: 'block'
+                            }}
+                          />
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
