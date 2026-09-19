@@ -1145,19 +1145,19 @@ a, button {
    ═══════════════════════════════════════════ */
 
 :root {
-  --admin-bg: #0a0a0a;
-  --admin-surface: #141414;
-  --admin-surface-hover: #1a1a1a;
-  --admin-surface-active: #1f1f1f;
-  --admin-border: #262626;
-  --admin-border-subtle: #1e1e1e;
-  --admin-ink: #f0f0f0;
-  --admin-mute: #737373;
-  --admin-accent: #3b82f6;
-  --admin-accent-hover: #2563eb;
+  --admin-bg: var(--color-soft-cloud);
+  --admin-surface: var(--color-canvas);
+  --admin-surface-hover: var(--color-soft-cloud);
+  --admin-surface-active: #e5e5e5;
+  --admin-border: var(--color-hairline);
+  --admin-border-subtle: var(--color-hairline-soft);
+  --admin-ink: var(--color-ink);
+  --admin-mute: var(--color-mute);
+  --admin-accent: var(--color-ink);
+  --admin-accent-hover: var(--color-charcoal);
   --admin-danger: #ef4444;
   --admin-danger-hover: #dc2626;
-  --admin-success: #22c55e;
+  --admin-success: var(--color-active);
   --admin-warning: #f59e0b;
 }
 
@@ -1417,9 +1417,10 @@ a, button {
 }
 
 .admin-main-title {
-  font-family: var(--font-body);
-  font-size: 20px;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
   color: var(--admin-ink);
 }
 
@@ -2167,11 +2168,12 @@ a, button {
 }
 
 .admin-login-title {
-  font-family: var(--font-body);
-  font-size: 22px;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
   color: var(--admin-ink);
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 .admin-login-subtitle {
