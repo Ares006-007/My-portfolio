@@ -11,7 +11,7 @@ export function useAuth() {
       const adminEmail = import.meta.env.VITE_ADMIN_EMAIL;
       
       // If a user is logged in but their email doesn't match the admin email
-      if (currentUser && adminEmail && currentUser.email !== adminEmail) {
+      if (currentUser && adminEmail && currentUser.email.trim().toLowerCase() !== adminEmail.trim().toLowerCase()) {
         firebaseSignOut(auth).then(() => {
           setUser(null);
           setLoading(false);
@@ -30,7 +30,7 @@ export function useAuth() {
       const result = await signInWithPopup(auth, googleProvider);
       const adminEmail = import.meta.env.VITE_ADMIN_EMAIL;
       
-      if (adminEmail && result.user.email !== adminEmail) {
+      if (adminEmail && result.user.email.trim().toLowerCase() !== adminEmail.trim().toLowerCase()) {
         await firebaseSignOut(auth);
         throw new Error('Unauthorized');
       }
