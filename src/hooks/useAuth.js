@@ -8,15 +8,32 @@ export function useAuth() {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      setLoading(false);
+      const adminEmail = import.meta.env.VITE_ADMIN_EMAIL;
+      
+      // If a user is logged in but their email doesn't match the admin email
+      if (currentUser && adminEmail && currentUser.email !== adminEmail) {
+        firebaseSignOut(auth).then(() => {
+          setUser(null);
+          setLoading(false);
+          alert("Unauthorized access. You are not authorized to view the admin dashboard.");
+        });
+      } else {
+        setUser(currentUser);
+        setLoading(false);
+      }
     });
     return () => unsubscribe();
   }, []);
 
   const signIn = useCallback(async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
+      const result = await signInWithPopup(auth, googleProvider);
+      const adminEmail = import.meta.env.VITE_ADMIN_EMAIL;
+      
+      if (adminEmail && result.user.email !== adminEmail) {
+        await firebaseSignOut(auth);
+        throw new Error('Unauthorized');
+      }
     } catch (error) {
       console.error('Sign-in error:', error);
       throw error;
